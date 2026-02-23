@@ -332,11 +332,11 @@
                 <p class="text-gray-300 text-sm sm:text-base md:text-lg lg:text-xl max-w-2xl mx-auto md:mx-0 fade-in-up hero-desc hero-desc-fade px-2" style="animation-delay: 1s;">
                     Diagnóstico avanzado, mecánica integral y mantenimiento para flotas de transporte pesado. Agenda tu turno rápido por WhatsApp.
                 </p>
-                <!-- contadores con un solo signo -->
+                <!-- CONTADORES CON UN SOLO SIGNO POR DATO -->
                 <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 pt-6 mx-auto md:mx-0 max-w-lg fade-in-up counters-shift px-2" style="animation-delay: 1.4s;">
-                    <div class="text-center p-3"><span class="block hero-counter text-3xl sm:text-4xl font-bold text-primary-blue"><span id="counter1">0</span>+</span><span class="hero-counter-text block text-xs sm:text-sm text-gray-400 mt-1">Años experiencia</span></div>
-                    <div class="text-center p-3"><span class="block hero-counter text-3xl sm:text-4xl font-bold text-primary-blue"><span id="counter2">0</span>+</span><span class="hero-counter-text block text-xs sm:text-sm text-gray-400 mt-1">Camiones atendidos</span></div>
-                    <div class="text-center p-3"><span class="block hero-counter text-3xl sm:text-4xl font-bold text-primary-blue"><span id="counter3">0</span>%</span><span class="hero-counter-text block text-xs sm:text-sm text-gray-400 mt-1">Satisfacción</span></div>
+                    <div class="text-center p-3"><span class="block hero-counter text-3xl sm:text-4xl font-bold text-primary-blue"><span id="counter1">0</span></span><span class="hero-counter-text block text-xs sm:text-sm text-gray-400 mt-1">Años experiencia</span></div>
+                    <div class="text-center p-3"><span class="block hero-counter text-3xl sm:text-4xl font-bold text-primary-blue"><span id="counter2">0</span></span><span class="hero-counter-text block text-xs sm:text-sm text-gray-400 mt-1">Camiones atendidos</span></div>
+                    <div class="text-center p-3"><span class="block hero-counter text-3xl sm:text-4xl font-bold text-primary-blue"><span id="counter3">0</span></span><span class="hero-counter-text block text-xs sm:text-sm text-gray-400 mt-1">Satisfacción</span></div>
                 </div>
                 <div class="flex justify-center md:justify-start pt-6 fade-in-up btn-full-mobile px-2" style="animation-delay: 1.6s;">
                     <a href="#diagnostico" class="bg-primary-blue text-primary-dark px-6 sm:px-8 py-3 sm:py-4 rounded font-bold uppercase tracking-wide hover:shadow-neon transition flex items-center justify-center gap-2 group hover-glow w-full md:w-auto text-sm sm:text-base">
@@ -545,11 +545,11 @@
                 }
             });
             
-            // Contadores animados - CON UN SOLO SIGNO
+            // Contadores animados - CON UN SOLO SIGNO POR DATO
             const counters = [
-                { id: 'counter1', target: 15, suffix: '' },
-                { id: 'counter2', target: 4000, suffix: '' },
-                { id: 'counter3', target: 97, suffix: '' }
+                { id: 'counter1', target: 15, suffix: '+' },
+                { id: 'counter2', target: 5000, suffix: '+' },
+                { id: 'counter3', target: 98, suffix: '%' }
             ];
 
             const animateCounter = (el, target, suffix) => {
@@ -752,6 +752,7 @@
     </script>
 </body>
 </html>
+
 
 
 
