@@ -1,757 +1,718 @@
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-    <meta name="description" content="Eudecam - Especialistas en camiones y transporte pesado. Diagnóstico avanzado, mecánica integral y mantenimiento preventivo. Turnos rápidos vía WhatsApp.">
-    <title>Eudecam</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        display: ['Orbitron', 'sans-serif'],
-                    },
-                    colors: {
-                        primary: {
-                            blue: '#00D4FF',
-                            dark: '#0A0F1A',
-                            gray: '#1E293B',
-                            light: '#F8FAFC',
-                        }
-                    },
-                    boxShadow: {
-                        'neon': '0 0 20px rgba(0, 212, 255, 0.5)',
-                        'glow': '0 0 30px rgba(0, 212, 255, 0.3)',
-                    }
-                }
-            }
-        }
-    </script>
-    <style>
-        * {
-            -webkit-tap-highlight-color: transparent;
-        }
-        body { 
-            background: #0A0F1A; 
-            color: #E2E8F0; 
-            overflow-x: hidden;
-            touch-action: manipulation;
-        }
-        .glass { 
-            background: rgba(30, 41, 59, 0.6); 
-            backdrop-filter: blur(12px); 
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(0, 212, 255, 0.2); 
-        }
-        .glow-text { text-shadow: 0 0 10px rgba(0, 212, 255, 0.7); }
-        .pulse-glow { animation: pulse-glow 3s infinite; }
-        @keyframes pulse-glow { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
-        .fade-in-up { opacity: 0; transform: translateY(40px); animation: fadeInUp 1.2s ease-out forwards; }
-        @keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
-        .hover-glow { transition: all 0.4s; }
-        .hover-glow:hover { box-shadow: 0 0 35px rgba(0, 212, 255, 0.8); transform: translateY(-10px) scale(1.05); }
-        
-        /* EFECTOS DE MOVIMIENTO PARA LA IMAGEN DE FONDO */
-        .parallax-image { 
-            transition: transform 0.5s ease-out; 
-            will-change: transform;
-            animation: kenburns 20s ease-in-out infinite alternate, subtleFloat 15s ease-in-out infinite;
-            transform-origin: center center;
-        }
-        
-        @media (max-width: 768px) {
-            .parallax-image {
-                animation: kenburns 30s ease-in-out infinite alternate;
-            }
-        }
-        
-        /* Efecto Ken Burns - Zoom suave */
-        @keyframes kenburns {
-            0% {
-                transform: scale(1) translate(0, 0);
-            }
-            50% {
-                transform: scale(1.15) translate(-2%, -2%);
-            }
-            100% {
-                transform: scale(1.05) translate(2%, 2%);
-            }
-        }
-        
-        /* Movimiento flotante sutil */
-        @keyframes subtleFloat {
-            0%, 100% {
-                transform: translate(0, 0) scale(1);
-            }
-            25% {
-                transform: translate(1%, -1%) scale(1.02);
-            }
-            50% {
-                transform: translate(-1%, 1%) scale(1.01);
-            }
-            75% {
-                transform: translate(1%, 1%) scale(1.03);
-            }
-        }
-        
-        /* Efecto de respiración */
-        @keyframes breathe {
-            0%, 100% {
-                transform: scale(1) rotate(0deg);
-            }
-            50% {
-                transform: scale(1.08) rotate(0.5deg);
-            }
-        }
-        
-        .parallax-bg {
-            animation: kenburns 25s ease-in-out infinite alternate, breathe 12s ease-in-out infinite;
-        }
-        
-        /* Movimiento horizontal continuo */
-        @keyframes panHorizontal {
-            0% {
-                transform: translateX(0) scale(1.1);
-            }
-            50% {
-                transform: translateX(-3%) scale(1.15);
-            }
-            100% {
-                transform: translateX(0) scale(1.1);
-            }
-        }
-        
-        /* Movimiento vertical suave */
-        @keyframes panVertical {
-            0%, 100% {
-                transform: translateY(0) scale(1.05);
-            }
-            50% {
-                transform: translateY(-4%) scale(1.1);
-            }
-        }
-        
-        /* Combinación de movimientos */
-        .parallax-image.moving-bg {
-            animation: 
-                kenburns 30s ease-in-out infinite alternate,
-                subtleFloat 20s ease-in-out infinite,
-                panHorizontal 35s ease-in-out infinite;
-        }
-        
-        /* Resto de estilos */
-        .input-glow { border-color: #334155; transition: all 0.3s; }
-        .input-glow:focus { border-color: #00D4FF; box-shadow: 0 0 20px rgba(0, 212, 255, 0.5); }
-        .neon-pulse { animation: neonPulse 4s ease-in-out infinite alternate; }
-        @keyframes neonPulse {
-            from { text-shadow: 0 0 10px #00D4FF, 0 0 20px #00D4FF, 0 0 30px #00D4FF; }
-            to { text-shadow: 0 0 20px #00D4FF, 0 0 40px #00D4FF, 0 0 60px #00D4FF, 0 0 80px #00D4FF; }
-        }
-        .racing-line {
-            height: 3px;
-            background: linear-gradient(90deg, transparent, #00D4FF, transparent);
-            box-shadow: 0 0 10px #00D4FF;
-        }
-        .animated-gradient {
-            background: linear-gradient(-45deg, #0A0F1A, #1E293B, #0A0F1A, #1a2740);
-            background-size: 400% 400%;
-            animation: gradient 15s ease infinite;
-        }
-        @keyframes gradient {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-        .section-padding-mobile {
-            padding-top: 6rem;
-            padding-bottom: 4rem;
-        }
-        @media (min-width: 768px) {
-            .section-padding-mobile {
-                padding-top: 8rem;
-                padding-bottom: 6rem;
-            }
-        }
-        .float-btn {
-            position: fixed;
-            bottom: 1.5rem;
-            z-index: 40;
-        }
-        @media (min-width: 768px) {
-            .float-btn {
-                bottom: 2.5rem;
-                right: 2rem;
-                left: auto;
-            }
-        }
-        .btn-full-mobile {
-            width: 100%;
-        }
-        @media (min-width: 768px) {
-            .btn-full-mobile {
-                width: auto;
-            }
-        }
-        .hero-counter {
-            font-family: 'Orbitron', sans-serif;
-        }
-        .hero-subtitle-fade {
-            opacity: 0;
-            animation: fadeIn 1s ease-out 0.8s forwards;
-        }
-        .hero-desc-fade {
-            opacity: 0;
-            animation: fadeIn 1s ease-out 1s forwards;
-        }
-        @keyframes fadeIn {
-            to { opacity: 1; }
-        }
-        .counters-shift {
-            transform: translateY(20px);
-            opacity: 0;
-            animation: fadeInUp 1s ease-out 1.4s forwards;
-        }
-        
-        /* Mobile menu animation */
-        .mobile-menu {
-            transform: translateX(-100%);
-            transition: transform 0.3s ease-in-out;
-        }
-        .mobile-menu.open {
-            transform: translateX(0);
-        }
-        
-        /* Prevent body scroll when menu is open */
-        body.menu-open {
-            overflow: hidden;
-        }
-        
-        /* Touch-friendly inputs */
-        @media (max-width: 768px) {
-            input, select, textarea {
-                font-size: 16px; /* Prevents zoom on iOS */
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+<meta name="description" content="Eudecam - Especialistas en camiones y transporte pesado. Diagnóstico avanzado, mecánica integral y mantenimiento preventivo. Turnos rápidos vía WhatsApp.">
+<title>Eudecam</title>
+<!-- Tailwind CSS CDN -->
+<script src="https://cdn.tailwindcss.com"></script>
+<!-- Font Awesome -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script>
+tailwind.config = {
+theme: {
+extend: {
+fontFamily: {
+sans: ['Inter', 'sans-serif'],
+display: ['Orbitron', 'sans-serif'],
+},
+colors: {
+primary: {
+blue: '#00D4FF',
+dark: '#0A0F1A',
+gray: '#1E293B',
+light: '#F8FAFC',
+}
+},
+boxShadow: {
+'neon': '0 0 20px rgba(0, 212, 255, 0.5)',
+'glow': '0 0 30px rgba(0, 212, 255, 0.3)',
+}
+}
+}
+}
+</script>
+<style>
+* {
+-webkit-tap-highlight-color: transparent;
+}
+body {
+background: #0A0F1A;
+color: #E2E8F0;
+overflow-x: hidden;
+touch-action: manipulation;
+}
+.glass {
+background: rgba(30, 41, 59, 0.6);
+backdrop-filter: blur(12px);
+-webkit-backdrop-filter: blur(12px);
+border: 1px solid rgba(0, 212, 255, 0.2);
+}
+.glow-text { text-shadow: 0 0 10px rgba(0, 212, 255, 0.7); }
+.pulse-glow { animation: pulse-glow 3s infinite; }
+@keyframes pulse-glow { 0%, 100% { opacity: 1; } 50% { opacity: 0.7; } }
+.fade-in-up { opacity: 0; transform: translateY(40px); animation: fadeInUp 1.2s ease-out forwards; }
+@keyframes fadeInUp { to { opacity: 1; transform: translateY(0); } }
+.hover-glow { transition: all 0.4s; }
+.hover-glow:hover { box-shadow: 0 0 35px rgba(0, 212, 255, 0.8); transform: translateY(-10px) scale(1.05); }
+/* EFECTOS DE MOVIMIENTO PARA LA IMAGEN DE FONDO */
+.parallax-image {
+transition: transform 0.5s ease-out;
+will-change: transform;
+animation: kenburns 20s ease-in-out infinite alternate, subtleFloat 15s ease-in-out infinite;
+transform-origin: center center;
+}
+@media (max-width: 768px) {
+.parallax-image {
+animation: kenburns 30s ease-in-out infinite alternate;
+}
+}
+/* Efecto Ken Burns - Zoom suave */
+@keyframes kenburns {
+0% {
+transform: scale(1) translate(0, 0);
+}
+50% {
+transform: scale(1.15) translate(-2%, -2%);
+}
+100% {
+transform: scale(1.05) translate(2%, 2%);
+}
+}
+/* Movimiento flotante sutil */
+@keyframes subtleFloat {
+0%, 100% {
+transform: translate(0, 0) scale(1);
+}
+25% {
+transform: translate(1%, -1%) scale(1.02);
+}
+50% {
+transform: translate(-1%, 1%) scale(1.01);
+}
+75% {
+transform: translate(1%, 1%) scale(1.03);
+}
+}
+/* Efecto de respiración */
+@keyframes breathe {
+0%, 100% {
+transform: scale(1) rotate(0deg);
+}
+50% {
+transform: scale(1.08) rotate(0.5deg);
+}
+}
+.parallax-bg {
+animation: kenburns 25s ease-in-out infinite alternate, breathe 12s ease-in-out infinite;
+}
+/* Movimiento horizontal continuo */
+@keyframes panHorizontal {
+0% {
+transform: translateX(0) scale(1.1);
+}
+50% {
+transform: translateX(-3%) scale(1.15);
+}
+100% {
+transform: translateX(0) scale(1.1);
+}
+}
+/* Movimiento vertical suave */
+@keyframes panVertical {
+0%, 100% {
+transform: translateY(0) scale(1.05);
+}
+50% {
+transform: translateY(-4%) scale(1.1);
+}
+}
+/* Combinación de movimientos */
+.parallax-image.moving-bg {
+animation:
+kenburns 30s ease-in-out infinite alternate,
+subtleFloat 20s ease-in-out infinite,
+panHorizontal 35s ease-in-out infinite;
+}
+/* Resto de estilos */
+.input-glow { border-color: #334155; transition: all 0.3s; }
+.input-glow:focus { border-color: #00D4FF; box-shadow: 0 0 20px rgba(0, 212, 255, 0.5); }
+.neon-pulse { animation: neonPulse 4s ease-in-out infinite alternate; }
+@keyframes neonPulse {
+from { text-shadow: 0 0 10px #00D4FF, 0 0 20px #00D4FF, 0 0 30px #00D4FF; }
+to { text-shadow: 0 0 20px #00D4FF, 0 0 40px #00D4FF, 0 0 60px #00D4FF, 0 0 80px #00D4FF; }
+}
+.racing-line {
+height: 3px;
+background: linear-gradient(90deg, transparent, #00D4FF, transparent);
+box-shadow: 0 0 10px #00D4FF;
+}
+.animated-gradient {
+background: linear-gradient(-45deg, #0A0F1A, #1E293B, #0A0F1A, #1a2740);
+background-size: 400% 400%;
+animation: gradient 15s ease infinite;
+}
+@keyframes gradient {
+0% { background-position: 0% 50%; }
+50% { background-position: 100% 50%; }
+100% { background-position: 0% 50%; }
+}
+.section-padding-mobile {
+padding-top: 6rem;
+padding-bottom: 4rem;
+}
+@media (min-width: 768px) {
+.section-padding-mobile {
+padding-top: 8rem;
+padding-bottom: 6rem;
+}
+}
+.float-btn {
+position: fixed;
+bottom: 1.5rem;
+z-index: 40;
+}
+@media (min-width: 768px) {
+.float-btn {
+bottom: 2.5rem;
+right: 2rem;
+left: auto;
+}
+}
+.btn-full-mobile {
+width: 100%;
+}
+@media (min-width: 768px) {
+.btn-full-mobile {
+width: auto;
+}
+}
+.hero-counter {
+font-family: 'Orbitron', sans-serif;
+}
+.hero-subtitle-fade {
+opacity: 0;
+animation: fadeIn 1s ease-out 0.8s forwards;
+}
+.hero-desc-fade {
+opacity: 0;
+animation: fadeIn 1s ease-out 1s forwards;
+}
+@keyframes fadeIn {
+to { opacity: 1; }
+}
+.counters-shift {
+transform: translateY(20px);
+opacity: 0;
+animation: fadeInUp 1s ease-out 1.4s forwards;
+}
+/* Mobile menu animation */
+.mobile-menu {
+transform: translateX(-100%);
+transition: transform 0.3s ease-in-out;
+}
+.mobile-menu.open {
+transform: translateX(0);
+}
+/* Prevent body scroll when menu is open */
+body.menu-open {
+overflow: hidden;
+}
+/* Touch-friendly inputs */
+@media (max-width: 768px) {
+input, select, textarea {
+font-size: 16px; /* Prevents zoom on iOS */
+}
+}
+</style>
 </head>
 <body class="antialiased relative">
-
-    <!-- NAVBAR -->
-    <nav class="fixed w-full z-50 top-0 glass border-b border-gray-700">
-        <div class="container mx-auto px-4 h-20 flex items-center justify-between relative">
-            <!-- Mobile Menu Button -->
-            <button id="mobile-menu-btn" class="md:hidden text-primary-blue text-2xl p-2 z-50">
-                <i class="fa-solid fa-bars"></i>
-            </button>
-            
-            <a href="#" class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 md:static md:translate-x-0 md:translate-y-0 font-display font-bold text-2xl sm:text-3xl md:text-4xl text-primary-blue tracking-wide uppercase">
-               EUDECAM
-            </a>
-            <div class="ml-auto flex items-center gap-4 md:gap-6">
-                <!-- ESTADO ABIERTO/CERRADO - INDICADOR INTELIGENTE -->
-                <div id="status-badge-desktop" class="hidden md:flex items-center px-4 py-2 rounded-full text-xs md:text-sm font-bold uppercase tracking-wide bg-gray-800 border border-gray-700">
-                    <span id="status-dot-desktop" class="w-3 h-3 rounded-full mr-3 animate-pulse"></span>
-                    <span id="status-text-desktop">Verificando...</span>
-                </div>
-                <div class="hidden md:flex items-center gap-4">
-                    <a href="#diagnostico" class="bg-primary-blue hover:bg-blue-500 text-primary-dark px-6 py-3 rounded-lg font-bold transition hover:shadow-neon uppercase">
-                        Pre-Diagnóstico
-                    </a>
-                </div>
-                <div class="flex items-center gap-6">
-                    <a href="https://www.instagram.com/eudecam/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="text-gray-300 hover:text-primary-blue text-2xl md:text-3xl transition-all hover:scale-110">
-                        <i class="fa-brands fa-instagram"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-        <!-- ESTADO MOBILE -->
-        <div id="status-bar-mobile" class="md:hidden w-full py-2 text-center text-xs font-bold uppercase bg-gray-800">Verificando horario...</div>
-        
-        <!-- Mobile Menu -->
-        <div id="mobile-menu" class="mobile-menu fixed inset-0 z-40 bg-primary-dark/95 backdrop-blur-lg md:hidden">
-            <div class="flex flex-col items-center justify-center h-full space-y-8 p-8">
-                <button id="close-menu-btn" class="absolute top-6 right-6 text-primary-blue text-3xl p-2">
-                    <i class="fa-solid fa-times"></i>
-                </button>
-                <a href="#diagnostico" class="mobile-menu-link text-2xl font-bold text-primary-blue hover:text-white transition py-4 border-b border-gray-700 w-full text-center">
-                    Pre-Diagnóstico
-                </a>
-                <a href="#servicios" class="mobile-menu-link text-2xl font-bold text-gray-300 hover:text-primary-blue transition py-4 border-b border-gray-700 w-full text-center">
-                    Servicios
-                </a>
-                <a href="https://www.instagram.com/eudecam/" target="_blank" rel="noopener noreferrer" class="mobile-menu-link text-2xl font-bold text-gray-300 hover:text-primary-blue transition py-4 border-b border-gray-700 w-full text-center">
-                    Instagram
-                </a>
-                <div id="status-badge-mobile-menu" class="flex items-center px-6 py-3 rounded-full text-sm font-bold uppercase tracking-wide bg-gray-800 border border-gray-700 mt-4">
-                    <span id="status-dot-mobile-menu" class="w-3 h-3 rounded-full mr-3"></span>
-                    <span id="status-text-mobile-menu">Verificando...</span>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Botón flotante -->
-    <div class="fixed bottom-24 md:bottom-10 right-4 left-4 md:left-auto z-50 float-btn px-4">
-        <a href="#diagnostico" class="bg-primary-blue hover:bg-blue-500 text-primary-dark px-6 py-4 rounded-full font-bold shadow-neon transition transform hover:scale-105 flex items-center justify-center gap-3 text-base hover-glow w-full md:w-auto btn-full-mobile">
-            <i class="fa-solid fa-calendar-check"></i> <span class="hidden sm:inline">Pedir Turno</span><span class="sm:hidden">Turno</span>
-        </a>
-    </div>
-
-    <!-- HERO - imagen de fondo con movimiento -->
-    <header class="relative pt-24 pb-24 md:pt-32 md:pb-32 lg:pt-40 lg:pb-32 min-h-screen flex items-center overflow-hidden bg-gradient-to-b from-primary-dark to-gray-900 animated-gradient section-padding-mobile">
-        <div id="parallax-container" class="absolute inset-0 overflow-hidden">
-            <!-- IMAGEN DE FONDO CON MOVIMIENTO - SCANIA TRUCK -->
-            <img id="parallax-img" 
-                 src="https://image.qwenlm.ai/public_source/dfca2d32-944a-46ef-a498-b61fb2f6aae7/26e7c8ec9-f9a9-4126-97a8-f1c977ad220b2953.png" 
-                 alt="Camión Scania Azul Eudecam - Transporte Pesado" 
-                 class="parallax-image moving-bg w-full h-full object-cover opacity-40">
-            <div class="absolute inset-0 bg-gradient-to-t from-primary-dark via-primary-dark/70 to-transparent"></div>
-            <div class="absolute inset-0 bg-gradient-to-r from-primary-dark/80 via-transparent to-primary-dark/80"></div>
-        </div>
-        <div class="container mx-auto px-4 md:px-6 relative z-10">
-            <div class="space-y-6 md:space-y-8 text-center md:text-left">
-                <div class="fade-in-up" style="animation-delay: 0.2s;">
-                    <div class="inline-block bg-primary-blue/20 border border-primary-blue/50 text-primary-blue px-4 py-1 rounded-full text-xs sm:text-sm font-bold uppercase tracking-widest">
-                        <i class="fa-solid fa-truck mr-2"></i> <span class="hidden sm:inline">TRANSPORTE PESADO</span><span class="sm:hidden">TRANSPORTE</span>
-                    </div>
-                </div>
-                <h1 class="font-display font-black text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl leading-tight glow-text neon-pulse fade-in-up hero-title" style="animation-delay: 0.6s;">
-                   EUDECAM
-                </h1>
-                <div class="racing-line max-w-md mx-auto md:mx-0 fade-in-up" style="animation-delay: 1.2s;"></div>
-                <p class="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-primary-blue glow-text fade-in-up hero-subtitle hero-subtitle-fade" style="animation-delay: 0.8s;">CAMIONES Y SEMIRREMOLQUES</p>
-                <p class="text-gray-300 text-sm sm:text-base md:text-lg lg:text-xl max-w-2xl mx-auto md:mx-0 fade-in-up hero-desc hero-desc-fade px-2" style="animation-delay: 1s;">
-                    Diagnóstico avanzado, mecánica integral y mantenimiento para flotas de transporte pesado. Agenda tu turno rápido por WhatsApp.
-                </p>
-                <!-- CONTADORES CON UN SOLO SIGNO POR DATO -->
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 pt-6 mx-auto md:mx-0 max-w-lg fade-in-up counters-shift px-2" style="animation-delay: 1.4s;">
-                    <div class="text-center p-3"><span class="block hero-counter text-3xl sm:text-4xl font-bold text-primary-blue"><span id="counter1">0</span></span><span class="hero-counter-text block text-xs sm:text-sm text-gray-400 mt-1">Años experiencia</span></div>
-                    <div class="text-center p-3"><span class="block hero-counter text-3xl sm:text-4xl font-bold text-primary-blue"><span id="counter2">0</span></span><span class="hero-counter-text block text-xs sm:text-sm text-gray-400 mt-1">Camiones atendidos</span></div>
-                    <div class="text-center p-3"><span class="block hero-counter text-3xl sm:text-4xl font-bold text-primary-blue"><span id="counter3">0</span></span><span class="hero-counter-text block text-xs sm:text-sm text-gray-400 mt-1">Satisfacción</span></div>
-                </div>
-                <div class="flex justify-center md:justify-start pt-6 fade-in-up btn-full-mobile px-2" style="animation-delay: 1.6s;">
-                    <a href="#diagnostico" class="bg-primary-blue text-primary-dark px-6 sm:px-8 py-3 sm:py-4 rounded font-bold uppercase tracking-wide hover:shadow-neon transition flex items-center justify-center gap-2 group hover-glow w-full md:w-auto text-sm sm:text-base">
-                        Pre-Diagnóstico <i class="fa-solid fa-arrow-right group-hover:translate-x-2 transition"></i>
-                    </a>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- SECCIÓN DE SERVICIOS -->
-    <section id="servicios" class="py-12 sm:py-16 md:py-24 bg-gradient-to-b from-gray-900 to-primary-dark">
-        <div class="container mx-auto px-4 md:px-6">
-            <div class="text-center mb-8 sm:mb-12 md:mb-16">
-                <h2 class="font-display font-bold text-3xl sm:text-4xl md:text-5xl text-primary-blue mb-4 glow-text">NUESTROS SERVICIOS</h2>
-                <div class="racing-line max-w-md mx-auto"></div>
-            </div>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
-                <div class="glass p-5 sm:p-6 md:p-8 rounded-xl hover-glow">
-                    <div class="text-primary-blue text-3xl sm:text-4xl md:text-5xl mb-3 sm:mb-4"><i class="fa-solid fa-microchip"></i></div>
-                    <h3 class="font-display font-bold text-lg sm:text-xl md:text-2xl mb-2 sm:mb-3 text-primary-blue">Diagnóstico Computarizado</h3>
-                    <p class="text-gray-400 text-xs sm:text-sm md:text-base">Escaneo completo de sistemas electrónicos con equipos de última generación para todas las marcas de camiones pesados.</p>
-                </div>
-                <div class="glass p-5 sm:p-6 md:p-8 rounded-xl hover-glow">
-                    <div class="text-primary-blue text-3xl sm:text-4xl md:text-5xl mb-3 sm:mb-4"><i class="fa-solid fa-screwdriver-wrench"></i></div>
-                    <h3 class="font-display font-bold text-lg sm:text-xl md:text-2xl mb-2 sm:mb-3 text-primary-blue">Mecánica Integral</h3>
-                    <p class="text-gray-400 text-xs sm:text-sm md:text-base">Reparación y mantenimiento de motores, transmisiones, frenos y todos los sistemas mecánicos de tu unidad.</p>
-                </div>
-                <div class="glass p-5 sm:p-6 md:p-8 rounded-xl hover-glow">
-                    <div class="text-primary-blue text-3xl sm:text-4xl md:text-5xl mb-3 sm:mb-4"><i class="fa-solid fa-oil-can"></i></div>
-                    <h3 class="font-display font-bold text-lg sm:text-xl md:text-2xl mb-2 sm:mb-3 text-primary-blue">Mantenimiento Preventivo</h3>
-                    <p class="text-gray-400 text-xs sm:text-sm md:text-base">Planes de mantenimiento programado para maximizar la vida útil de tu flota y evitar fallas inesperadas.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- SECCIÓN DE DIAGNÓSTICO -->
-    <section id="diagnostico" class="py-12 sm:py-16 md:py-24 bg-gradient-to-b from-primary-dark to-gray-900">
-        <div class="container mx-auto px-4 md:px-6">
-            <div class="max-w-4xl mx-auto">
-                <div class="text-center mb-8 sm:mb-12">
-                    <h2 class="font-display font-bold text-3xl sm:text-4xl md:text-5xl text-primary-blue mb-4 glow-text">PRE-DIAGNÓSTICO ONLINE</h2>
-                    <div class="racing-line max-w-md mx-auto mb-4 sm:mb-6"></div>
-                    <p class="text-gray-300 text-sm sm:text-base md:text-lg px-2">Completa el formulario y recibe una evaluación inicial de tu vehículo</p>
-                </div>
-                
-                <form id="triageForm" class="glass p-4 sm:p-6 md:p-10 rounded-2xl space-y-4 sm:space-y-6">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-                        <div>
-                            <label class="block text-primary-blue font-bold mb-2 text-sm md:text-base">Nombre completo</label>
-                            <input type="text" name="name" required class="input-glow w-full px-3 sm:px-4 py-3 rounded-lg bg-gray-800/50 border border-gray-600 text-white focus:outline-none text-sm sm:text-base" placeholder="Tu nombre">
-                        </div>
-                        <div>
-                            <label class="block text-primary-blue font-bold mb-2 text-sm md:text-base">WhatsApp</label>
-                            <input type="tel" name="phone" required class="input-glow w-full px-3 sm:px-4 py-3 rounded-lg bg-gray-800/50 border border-gray-600 text-white focus:outline-none text-sm sm:text-base" placeholder="+54 9 11 ...">
-                        </div>
-                    </div>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-                        <div>
-                            <label class="block text-primary-blue font-bold mb-2 text-sm md:text-base">Marca y modelo del camión</label>
-                            <input type="text" name="vehicle" required class="input-glow w-full px-3 sm:px-4 py-3 rounded-lg bg-gray-800/50 border border-gray-600 text-white focus:outline-none text-sm sm:text-base" placeholder="Ej: Scania R450">
-                        </div>
-                        <div>
-                            <label class="block text-primary-blue font-bold mb-2 text-sm md:text-base">Kilometraje</label>
-                            <input type="number" name="km" required class="input-glow w-full px-3 sm:px-4 py-3 rounded-lg bg-gray-800/50 border border-gray-600 text-white focus:outline-none text-sm sm:text-base" placeholder="Ej: 150000">
-                        </div>
-                    </div>
-                    
-                    <!-- NUEVO CAMPO: TIPO DE FALLA -->
-                    <div>
-                        <label class="block text-primary-blue font-bold mb-2 text-sm md:text-base">Tipo de falla principal</label>
-                        <select name="failureType" required class="input-glow w-full px-3 sm:px-4 py-3 rounded-lg bg-gray-800/50 border border-gray-600 text-white focus:outline-none text-sm sm:text-base">
-                            <option value="">Selecciona una opción...</option>
-                            <option value="Motor - Pérdida de potencia">Motor - Pérdida de potencia</option>
-                            <option value="Motor - Sobrecalentamiento">Motor - Sobrecalentamiento</option>
-                            <option value="Motor - Ruidos extraños">Motor - Ruidos extraños</option>
-                            <option value="Motor - Humo excesivo">Motor - Humo excesivo</option>
-                            <option value="Motor - Dificultad para arrancar">Motor - Dificultad para arrancar</option>
-                            <option value="Transmisión - Problemas de cambio">Transmisión - Problemas de cambio</option>
-                            <option value="Transmisión - Ruidos/vibraciones">Transmisión - Ruidos/vibraciones</option>
-                            <option value="Transmisión - Embrague">Transmisión - Embrague</option>
-                            <option value="Frenos - Pedal blando/duro">Frenos - Pedal blando/duro</option>
-                            <option value="Frenos - Ruidos al frenar">Frenos - Ruidos al frenar</option>
-                            <option value="Frenos - Vibración al frenar">Frenos - Vibración al frenar</option>
-                            <option value="Frenos - Fuga de líquido">Frenos - Fuga de líquido</option>
-                            <option value="Sistema eléctrico - Fallas de luces">Sistema eléctrico - Fallas de luces</option>
-                            <option value="Sistema eléctrico - Batería">Sistema eléctrico - Batería</option>
-                            <option value="Sistema eléctrico - Alternador">Sistema eléctrico - Alternador</option>
-                            <option value="Sistema eléctrico - Tablero/indicadores">Sistema eléctrico - Tablero/indicadores</option>
-                            <option value="Dirección - Dura/pesada">Dirección - Dura/pesada</option>
-                            <option value="Dirección - Ruidos">Dirección - Ruidos</option>
-                            <option value="Dirección - Vibraciones">Dirección - Vibraciones</option>
-                            <option value="Suspensión - Ruidos">Suspensión - Ruidos</option>
-                            <option value="Suspensión - Inestabilidad">Suspensión - Inestabilidad</option>
-                            <option value="Suspensión - Fugas">Suspensión - Fugas</option>
-                            <option value="Escape - Ruidos excesivos">Escape - Ruidos excesivos</option>
-                            <option value="Escape - Humo anormal">Escape - Humo anormal</option>
-                            <option value="Escape - Olores extraños">Escape - Olores extraños</option>
-                            <option value="Refrigeración - Fugas">Refrigeración - Fugas</option>
-                            <option value="Refrigeración - Sobrecalentamiento">Refrigeración - Sobrecalentamiento</option>
-                            <option value="Refrigeración - Ventilador">Refrigeración - Ventilador</option>
-                            <option value="Inyección - Fallas de combustible">Inyección - Fallas de combustible</option>
-                            <option value="Inyección - Inyectores">Inyección - Inyectores</option>
-                            <option value="Inyección - Bomba">Inyección - Bomba</option>
-                            <option value="Turbo - Pérdida de potencia">Turbo - Pérdida de potencia</option>
-                            <option value="Turbo - Ruidos">Turbo - Ruidos</option>
-                            <option value="Turbo - Humo">Turbo - Humo</option>
-                            <option value="Otro - Especificar en descripción">Otro - Especificar en descripción</option>
-                        </select>
-                    </div>
-                    
-                    <div>
-                        <label class="block text-primary-blue font-bold mb-2 text-sm md:text-base">Descripción detallada de la falla</label>
-                        <textarea name="symptoms" required rows="4" class="input-glow w-full px-3 sm:px-4 py-3 rounded-lg bg-gray-800/50 border border-gray-600 text-white focus:outline-none text-sm sm:text-base" placeholder="Describe los síntomas que presenta el vehículo..."></textarea>
-                    </div>
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
-                        <div>
-                            <label class="block text-primary-blue font-bold mb-2 text-sm md:text-base">¿Cuándo ocurre la falla?</label>
-                            <select name="context" class="input-glow w-full px-3 sm:px-4 py-3 rounded-lg bg-gray-800/50 border border-gray-600 text-white focus:outline-none text-sm sm:text-base">
-                                <option value="Constante">Constante</option>
-                                <option value="En frío">En frío</option>
-                                <option value="En caliente">En caliente</option>
-                                <option value="Bajo carga">Bajo carga</option>
-                                <option value="En ruta">En ruta</option>
-                                <option value="Ciudad">Ciudad</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-primary-blue font-bold mb-2 text-sm md:text-base">Tipo de transporte</label>
-                            <select name="heavyContext" class="input-glow w-full px-3 sm:px-4 py-3 rounded-lg bg-gray-800/50 border border-gray-600 text-white focus:outline-none text-sm sm:text-base">
-                                <option value="Carga pesada">Carga pesada</option>
-                                <option value="Larga distancia">Larga distancia</option>
-                                <option value="Distribución urbana">Distribución urbana</option>
-                                <option value="Obras/construcción">Obras/construcción</option>
-                                <option value="Otros">Otros</option>
-                            </select>
-                        </div>
-                    </div>
-                    
-                    <button type="submit" class="w-full bg-primary-blue hover:bg-blue-500 text-primary-dark font-bold py-3 sm:py-4 rounded-lg transition hover:shadow-neon uppercase text-sm sm:text-base md:text-lg">
-                        <i class="fa-brands fa-whatsapp mr-2"></i> Enviar Pre-Diagnóstico
-                    </button>
-                </form>
-            </div>
-        </div>
-    </section>
-
-    <!-- FOOTER -->
-    <footer class="bg-primary-dark border-t border-gray-800 py-8 sm:py-12">
-        <div class="container mx-auto px-4 md:px-6">
-            <div class="text-center">
-                <div class="font-display font-bold text-2xl sm:text-3xl md:text-4xl text-primary-blue mb-4">EUDECAM</div>
-                <p class="text-gray-400 text-xs sm:text-sm md:text-base mb-6">Especialistas en transporte pesado</p>
-                <div class="flex justify-center gap-4 sm:gap-6 mb-6">
-                    <a href="https://www.instagram.com/eudecam/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-primary-blue text-2xl sm:text-3xl transition">
-                        <i class="fa-brands fa-instagram"></i>
-                    </a>
-                    <a href="https://wa.me/541149371759" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-primary-blue text-2xl sm:text-3xl transition">
-                        <i class="fa-brands fa-whatsapp"></i>
-                    </a>
-                </div>
-                <p class="text-gray-500 text-xs sm:text-sm">&copy; 2026 Eudecam. Todos los derechos reservados.</p>
-            </div>
-        </div>
-    </footer>
-
-    <!-- SCRIPT -->
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // Mobile menu functionality
-            const mobileMenuBtn = document.getElementById('mobile-menu-btn');
-            const closeMenuBtn = document.getElementById('close-menu-btn');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
-            const body = document.body;
-            const menuIcon = mobileMenuBtn.querySelector('i');
-            
-            function openMenu() {
-                mobileMenu.classList.add('open');
-                body.classList.add('menu-open');
-                menuIcon.classList.remove('fa-bars');
-                menuIcon.classList.add('fa-times');
-            }
-            
-            function closeMenu() {
-                mobileMenu.classList.remove('open');
-                body.classList.remove('menu-open');
-                menuIcon.classList.remove('fa-times');
-                menuIcon.classList.add('fa-bars');
-            }
-            
-            mobileMenuBtn.addEventListener('click', openMenu);
-            closeMenuBtn.addEventListener('click', closeMenu);
-            
-            mobileMenuLinks.forEach(link => {
-                link.addEventListener('click', closeMenu);
-            });
-            
-            // Close menu when clicking outside
-            mobileMenu.addEventListener('click', (e) => {
-                if (e.target === mobileMenu) {
-                    closeMenu();
-                }
-            });
-            
-            // Contadores animados - CON UN SOLO SIGNO POR DATO
-            const counters = [
-                { id: 'counter1', target: 15, suffix: '+' },
-                { id: 'counter2', target: 5000, suffix: '+' },
-                { id: 'counter3', target: 98, suffix: '%' }
-            ];
-
-            const animateCounter = (el, target, suffix) => {
-                let current = 0;
-                const increment = target / 50;
-                const timer = setInterval(() => {
-                    current += increment;
-                    if (current >= target) {
-                        current = target;
-                        clearInterval(timer);
-                    }
-                    el.textContent = Math.floor(current) + suffix;
-                }, 30);
-            };
-
-            // Intersection Observer para contadores
-            const observerOptions = {
-                threshold: 0.5,
-                rootMargin: '0px'
-            };
-
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const counterId = entry.target.id;
-                        const counterData = counters.find(c => c.id === counterId);
-                        if (counterData) {
-                            animateCounter(entry.target, counterData.target, counterData.suffix);
-                            observer.unobserve(entry.target);
-                        }
-                    }
-                });
-            }, observerOptions);
-
-            counters.forEach(counter => {
-                const el = document.getElementById(counter.id);
-                if (el) observer.observe(el);
-            });
-
-            // Parallax effect mejorado con movimiento
-            const parallaxContainer = document.getElementById('parallax-container');
-            const parallaxImg = document.getElementById('parallax-img');
-            
-            if (parallaxContainer && parallaxImg) {
-                // Only enable scroll parallax on desktop
-                if (window.innerWidth > 768) {
-                    window.addEventListener('scroll', () => {
-                        const scrolled = window.pageYOffset;
-                        const rate = scrolled * 0.5;
-                        parallaxImg.style.transform = `translateY(${rate}px) scale(1.1)`;
-                    });
-                }
-                
-                // Only enable mouse movement effect on desktop
-                if (window.innerWidth > 768) {
-                    document.addEventListener('mousemove', (e) => {
-                        const xAxis = (window.innerWidth / 2 - e.pageX) / 50;
-                        const yAxis = (window.innerHeight / 2 - e.pageY) / 50;
-                        parallaxImg.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg) scale(1.05)`;
-                    });
-                }
-            }
-
-            // Form submission
-            document.getElementById('triageForm').addEventListener('submit', (e) => {
-                e.preventDefault();
-                const btn = e.target.querySelector('button');
-                const originalText = btn.innerHTML;
-                btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Enviando...';
-                btn.disabled = true;
-
-                const formData = new FormData(e.target);
-                const name = formData.get('name');
-                const phone = formData.get('phone');
-                const vehicle = formData.get('vehicle');
-                const km = formData.get('km');
-                const failureType = formData.get('failureType');
-                const symptoms = formData.get('symptoms');
-                const context = formData.get('context');
-                const heavyContext = formData.get('heavyContext');
-
-                const message = `🏁 *¡Hola Eudecam!* 🚛\n\n` +
-                                `🔍 *Solicitud de Pre-Diagnóstico*\n\n` +
-                                `👤 *Nombre:* ${name}\n` +
-                                `📱 *WhatsApp:* ${phone}\n\n` +
-                                `🚛 *Vehículo:* ${vehicle}\n` +
-                                `🛣️ *Kilometraje:* ${km} km\n\n` +
-                                `⚠️ *Tipo de falla:* ${failureType}\n\n` +
-                                `📝 *Descripción:* \n${symptoms}\n\n` +
-                                `🔧 *Ocurre:* ${context}\n` +
-                                `🚚 *Tipo de transporte:* ${heavyContext}\n\n` +
-                                `💰 *Solicito:* Diagnóstico y presupuesto aproximado\n\n` +
-                                `⏱️ ¡Espero su respuesta! 🚀`;
-
-                const whatsappUrl = `https://api.whatsapp.com/send?phone=541149371759&text=${encodeURIComponent(message)}`;
-                
-                setTimeout(() => {
-                    window.open(whatsappUrl, '_blank');
-                    btn.innerHTML = '<i class="fa-solid fa-check"></i> ¡Enviado!';
-                    btn.classList.add('bg-green-600');
-                    setTimeout(() => {
-                        btn.innerHTML = originalText;
-                        btn.classList.remove('bg-green-600');
-                        btn.disabled = false;
-                        e.target.reset();
-                    }, 3000);
-                }, 1000);
-            });
-
-            // SISTEMA DE ESTADO INTELIGENTE - ABIERTO/CERRADO
-            const checkStatus = () => {
-                const now = new Date();
-                const hour = now.getHours();
-                const minutes = now.getMinutes();
-                const day = now.getDay(); // 0 = Domingo, 1 = Lunes, ..., 6 = Sábado
-                
-                // Horario de atención: Lunes a Viernes de 8:00 a 18:00
-                const openingHour = 8;
-                const closingHour = 18;
-                const currentTime = hour + (minutes / 60);
-                
-                // Verificar si es día hábil (1-5) y dentro del horario
-                const isBusinessDay = (day >= 1 && day <= 5);
-                const isBusinessHours = (currentTime >= openingHour && currentTime < closingHour);
-                const isOpen = isBusinessDay && isBusinessHours;
-                
-                // Elementos del DOM - Desktop
-                const statusDotDesktop = document.getElementById('status-dot-desktop');
-                const statusTextDesktop = document.getElementById('status-text-desktop');
-                const statusBarMobile = document.getElementById('status-bar-mobile');
-                
-                // Elementos del DOM - Mobile Menu
-                const statusDotMobileMenu = document.getElementById('status-dot-mobile-menu');
-                const statusTextMobileMenu = document.getElementById('status-text-mobile-menu');
-                
-                if (isOpen) {
-                    // ESTADO: ABIERTO - Verde
-                    if (statusDotDesktop) {
-                        statusDotDesktop.className = 'w-3 h-3 rounded-full mr-3 bg-green-500 animate-pulse shadow-lg shadow-green-500/50';
-                    }
-                    if (statusTextDesktop) {
-                        statusTextDesktop.textContent = 'Abierto ahora';
-                        statusTextDesktop.className = 'text-green-400 font-bold';
-                    }
-                    if (statusBarMobile) {
-                        statusBarMobile.textContent = '✓ Abierto ahora - Lun a Vie 8:00 a 18:00';
-                        statusBarMobile.className = 'md:hidden w-full py-2 text-center text-xs font-bold uppercase bg-green-900/30 text-green-400 border-t border-green-700/50';
-                    }
-                    if (statusDotMobileMenu) {
-                        statusDotMobileMenu.className = 'w-3 h-3 rounded-full mr-3 bg-green-500 animate-pulse';
-                    }
-                    if (statusTextMobileMenu) {
-                        statusTextMobileMenu.textContent = 'Abierto ahora';
-                        statusTextMobileMenu.className = 'text-green-400 font-bold';
-                    }
-                } else {
-                    // ESTADO: CERRADO - Rojo
-                    if (statusDotDesktop) {
-                        statusDotDesktop.className = 'w-3 h-3 rounded-full mr-3 bg-red-500';
-                    }
-                    if (statusTextDesktop) {
-                        statusTextDesktop.textContent = 'Cerrado';
-                        statusTextDesktop.className = 'text-red-400 font-bold';
-                    }
-                    if (statusBarMobile) {
-                        // Calcular cuándo abre
-                        let nextOpenDay = '';
-                        let nextOpenTime = '';
-                        
-                        if (day === 0) {
-                            // Domingo - abre mañana (Lunes)
-                            nextOpenDay = 'Mañana (Lun)';
-                        } else if (day === 6) {
-                            // Sábado - abre pasado mañana (Lunes)
-                            nextOpenDay = 'Lunes';
-                        } else {
-                            // Entre semana - abre mañana
-                            nextOpenDay = 'Mañana';
-                        }
-                        
-                        nextOpenTime = '8:00 hs';
-                        statusBarMobile.textContent = `✗ Cerrado - Abre ${nextOpenDay} ${nextOpenTime}`;
-                        statusBarMobile.className = 'md:hidden w-full py-2 text-center text-xs font-bold uppercase bg-red-900/30 text-red-400 border-t border-red-700/50';
-                    }
-                    if (statusDotMobileMenu) {
-                        statusDotMobileMenu.className = 'w-3 h-3 rounded-full mr-3 bg-red-500';
-                    }
-                    if (statusTextMobileMenu) {
-                        statusTextMobileMenu.textContent = 'Cerrado';
-                        statusTextMobileMenu.className = 'text-red-400 font-bold';
-                    }
-                }
-            };
-
-            // Ejecutar al cargar y actualizar cada minuto
-            checkStatus();
-            setInterval(checkStatus, 60000);
-
-        });
-    </script>
+<!-- NAVBAR -->
+<nav class="fixed w-full z-50 top-0 glass border-b border-gray-700">
+<div class="container mx-auto px-4 h-20 flex items-center justify-between relative">
+<!-- Mobile Menu Button -->
+<button id="mobile-menu-btn" class="md:hidden text-primary-blue text-2xl p-2 z-50">
+<i class="fa-solid fa-bars"></i>
+</button>
+<a href="#" class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 md:static md:translate-x-0 md:translate-y-0 font-display font-bold text-2xl sm:text-3xl md:text-4xl text-primary-blue tracking-wide uppercase">
+EUDECAM
+</a>
+<div class="ml-auto flex items-center gap-4 md:gap-6">
+<!-- ESTADO ABIERTO/CERRADO - INDICADOR INTELIGENTE -->
+<div id="status-badge-desktop" class="hidden md:flex items-center px-4 py-2 rounded-full text-xs md:text-sm font-bold uppercase tracking-wide bg-gray-800 border border-gray-700">
+<span id="status-dot-desktop" class="w-3 h-3 rounded-full mr-3 animate-pulse"></span>
+<span id="status-text-desktop">Verificando...</span>
+</div>
+<div class="hidden md:flex items-center gap-4">
+<a href="#diagnostico" class="bg-primary-blue hover:bg-blue-500 text-primary-dark px-6 py-3 rounded-lg font-bold transition hover:shadow-neon uppercase">
+Pre-Diagnóstico
+</a>
+</div>
+<div class="flex items-center gap-6">
+<a href="https://www.instagram.com/eudecam/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="text-gray-300 hover:text-primary-blue text-2xl md:text-3xl transition-all hover:scale-110">
+<i class="fa-brands fa-instagram"></i>
+</a>
+</div>
+</div>
+</div>
+<!-- ESTADO MOBILE -->
+<div id="status-bar-mobile" class="md:hidden w-full py-2 text-center text-xs font-bold uppercase bg-gray-800">Verificando horario...</div>
+<!-- Mobile Menu -->
+<div id="mobile-menu" class="mobile-menu fixed inset-0 z-40 bg-primary-dark/95 backdrop-blur-lg md:hidden">
+<div class="flex flex-col items-center justify-center h-full space-y-8 p-8">
+<button id="close-menu-btn" class="absolute top-6 right-6 text-primary-blue text-3xl p-2">
+<i class="fa-solid fa-times"></i>
+</button>
+<a href="#diagnostico" class="mobile-menu-link text-2xl font-bold text-primary-blue hover:text-white transition py-4 border-b border-gray-700 w-full text-center">
+Pre-Diagnóstico
+</a>
+<a href="#servicios" class="mobile-menu-link text-2xl font-bold text-gray-300 hover:text-primary-blue transition py-4 border-b border-gray-700 w-full text-center">
+Servicios
+</a>
+<a href="https://www.instagram.com/eudecam/" target="_blank" rel="noopener noreferrer" class="mobile-menu-link text-2xl font-bold text-gray-300 hover:text-primary-blue transition py-4 border-b border-gray-700 w-full text-center">
+Instagram
+</a>
+<div id="status-badge-mobile-menu" class="flex items-center px-6 py-3 rounded-full text-sm font-bold uppercase tracking-wide bg-gray-800 border border-gray-700 mt-4">
+<span id="status-dot-mobile-menu" class="w-3 h-3 rounded-full mr-3"></span>
+<span id="status-text-mobile-menu">Verificando...</span>
+</div>
+</div>
+</div>
+</nav>
+<!-- Botón flotante -->
+<div class="fixed bottom-24 md:bottom-10 right-4 left-4 md:left-auto z-50 float-btn px-4">
+<a href="#diagnostico" class="bg-primary-blue hover:bg-blue-500 text-primary-dark px-6 py-4 rounded-full font-bold shadow-neon transition transform hover:scale-105 flex items-center justify-center gap-3 text-base hover-glow w-full md:w-auto btn-full-mobile">
+<i class="fa-solid fa-calendar-check"></i> <span class="hidden sm:inline">Pedir Turno</span><span class="sm:hidden">Turno</span>
+</a>
+</div>
+<!-- HERO - imagen de fondo con movimiento -->
+<header class="relative pt-24 pb-24 md:pt-32 md:pb-32 lg:pt-40 lg:pb-32 min-h-screen flex items-center overflow-hidden bg-gradient-to-b from-primary-dark to-gray-900 animated-gradient section-padding-mobile">
+<div id="parallax-container" class="absolute inset-0 overflow-hidden">
+<!-- IMAGEN DE FONDO CON MOVIMIENTO - SCANIA TRUCK -->
+<img id="parallax-img"
+src="https://image.qwenlm.ai/public_source/dfca2d32-944a-46ef-a498-b61fb2f6aae7/26e7c8ec9-f9a9-4126-97a8-f1c977ad220b2953.png"
+alt="Camión Scania Azul Eudecam - Transporte Pesado"
+class="parallax-image moving-bg w-full h-full object-cover opacity-40">
+<div class="absolute inset-0 bg-gradient-to-t from-primary-dark via-primary-dark/70 to-transparent"></div>
+<div class="absolute inset-0 bg-gradient-to-r from-primary-dark/80 via-transparent to-primary-dark/80"></div>
+</div>
+<div class="container mx-auto px-4 md:px-6 relative z-10">
+<div class="space-y-6 md:space-y-8 text-center md:text-left">
+<div class="fade-in-up" style="animation-delay: 0.2s;">
+<div class="inline-block bg-primary-blue/20 border border-primary-blue/50 text-primary-blue px-4 py-1 rounded-full text-xs sm:text-sm font-bold uppercase tracking-widest">
+<i class="fa-solid fa-truck mr-2"></i> <span class="hidden sm:inline">TRANSPORTE PESADO</span><span class="sm:hidden">TRANSPORTE</span>
+</div>
+</div>
+<h1 class="font-display font-black text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl leading-tight glow-text neon-pulse fade-in-up hero-title" style="animation-delay: 0.6s;">
+EUDECAM
+</h1>
+<div class="racing-line max-w-md mx-auto md:mx-0 fade-in-up" style="animation-delay: 1.2s;"></div>
+<p class="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-primary-blue glow-text fade-in-up hero-subtitle hero-subtitle-fade" style="animation-delay: 0.8s;">CAMIONES Y SEMIRREMOLQUES</p>
+<p class="text-gray-300 text-sm sm:text-base md:text-lg lg:text-xl max-w-2xl mx-auto md:mx-0 fade-in-up hero-desc hero-desc-fade px-2" style="animation-delay: 1s;">
+Diagnóstico avanzado, mecánica integral y mantenimiento para flotas de transporte pesado. Agenda tu turno rápido por WhatsApp.
+</p>
+<!-- CONTADORES CON UN SOLO SIGNO POR DATO -->
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 pt-6 mx-auto md:mx-0 max-w-lg fade-in-up counters-shift px-2" style="animation-delay: 1.4s;">
+<div class="text-center p-3"><span class="block hero-counter text-3xl sm:text-4xl font-bold text-primary-blue"><span id="counter1">0</span></span><span class="hero-counter-text block text-xs sm:text-sm text-gray-400 mt-1">Años experiencia</span></div>
+<div class="text-center p-3"><span class="block hero-counter text-3xl sm:text-4xl font-bold text-primary-blue"><span id="counter2">0</span></span><span class="hero-counter-text block text-xs sm:text-sm text-gray-400 mt-1">Camiones atendidos</span></div>
+<div class="text-center p-3"><span class="block hero-counter text-3xl sm:text-4xl font-bold text-primary-blue"><span id="counter3">0</span></span><span class="hero-counter-text block text-xs sm:text-sm text-gray-400 mt-1">Satisfacción</span></div>
+</div>
+<div class="flex justify-center md:justify-start pt-6 fade-in-up btn-full-mobile px-2" style="animation-delay: 1.6s;">
+<a href="#diagnostico" class="bg-primary-blue text-primary-dark px-6 sm:px-8 py-3 sm:py-4 rounded font-bold uppercase tracking-wide hover:shadow-neon transition flex items-center justify-center gap-2 group hover-glow w-full md:w-auto text-sm sm:text-base">
+Pre-Diagnóstico <i class="fa-solid fa-arrow-right group-hover:translate-x-2 transition"></i>
+</a>
+</div>
+</div>
+</div>
+</header>
+<!-- SECCIÓN DE SERVICIOS -->
+<section id="servicios" class="py-12 sm:py-16 md:py-24 bg-gradient-to-b from-gray-900 to-primary-dark">
+<div class="container mx-auto px-4 md:px-6">
+<div class="text-center mb-8 sm:mb-12 md:mb-16">
+<h2 class="font-display font-bold text-3xl sm:text-4xl md:text-5xl text-primary-blue mb-4 glow-text">NUESTROS SERVICIOS</h2>
+<div class="racing-line max-w-md mx-auto"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
+<div class="glass p-5 sm:p-6 md:p-8 rounded-xl hover-glow">
+<div class="text-primary-blue text-3xl sm:text-4xl md:text-5xl mb-3 sm:mb-4"><i class="fa-solid fa-microchip"></i></div>
+<h3 class="font-display font-bold text-lg sm:text-xl md:text-2xl mb-2 sm:mb-3 text-primary-blue">Diagnóstico Computarizado</h3>
+<p class="text-gray-400 text-xs sm:text-sm md:text-base">Escaneo completo de sistemas electrónicos con equipos de última generación para todas las marcas de camiones pesados.</p>
+</div>
+<div class="glass p-5 sm:p-6 md:p-8 rounded-xl hover-glow">
+<div class="text-primary-blue text-3xl sm:text-4xl md:text-5xl mb-3 sm:mb-4"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+<h3 class="font-display font-bold text-lg sm:text-xl md:text-2xl mb-2 sm:mb-3 text-primary-blue">Mecánica Integral</h3>
+<p class="text-gray-400 text-xs sm:text-sm md:text-base">Reparación y mantenimiento de motores, transmisiones, frenos y todos los sistemas mecánicos de tu unidad.</p>
+</div>
+<div class="glass p-5 sm:p-6 md:p-8 rounded-xl hover-glow">
+<div class="text-primary-blue text-3xl sm:text-4xl md:text-5xl mb-3 sm:mb-4"><i class="fa-solid fa-oil-can"></i></div>
+<h3 class="font-display font-bold text-lg sm:text-xl md:text-2xl mb-2 sm:mb-3 text-primary-blue">Mantenimiento Preventivo</h3>
+<p class="text-gray-400 text-xs sm:text-sm md:text-base">Planes de mantenimiento programado para maximizar la vida útil de tu flota y evitar fallas inesperadas.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- SECCIÓN DE DIAGNÓSTICO -->
+<section id="diagnostico" class="py-12 sm:py-16 md:py-24 bg-gradient-to-b from-primary-dark to-gray-900">
+<div class="container mx-auto px-4 md:px-6">
+<div class="max-w-4xl mx-auto">
+<div class="text-center mb-8 sm:mb-12">
+<h2 class="font-display font-bold text-3xl sm:text-4xl md:text-5xl text-primary-blue mb-4 glow-text">PRE-DIAGNÓSTICO ONLINE</h2>
+<div class="racing-line max-w-md mx-auto mb-4 sm:mb-6"></div>
+<p class="text-gray-300 text-sm sm:text-base md:text-lg px-2">Completa el formulario y recibe una evaluación inicial de tu vehículo</p>
+</div>
+<form id="triageForm" class="glass p-4 sm:p-6 md:p-10 rounded-2xl space-y-4 sm:space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+<div>
+<label class="block text-primary-blue font-bold mb-2 text-sm md:text-base">Nombre completo</label>
+<input type="text" name="name" required class="input-glow w-full px-3 sm:px-4 py-3 rounded-lg bg-gray-800/50 border border-gray-600 text-white focus:outline-none text-sm sm:text-base" placeholder="Tu nombre">
+</div>
+<div>
+<label class="block text-primary-blue font-bold mb-2 text-sm md:text-base">WhatsApp</label>
+<input type="tel" name="phone" required class="input-glow w-full px-3 sm:px-4 py-3 rounded-lg bg-gray-800/50 border border-gray-600 text-white focus:outline-none text-sm sm:text-base" placeholder="+54 9 11 ...">
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+<div>
+<label class="block text-primary-blue font-bold mb-2 text-sm md:text-base">Marca y modelo del camión</label>
+<input type="text" name="vehicle" required class="input-glow w-full px-3 sm:px-4 py-3 rounded-lg bg-gray-800/50 border border-gray-600 text-white focus:outline-none text-sm sm:text-base" placeholder="Ej: Scania R450">
+</div>
+<div>
+<label class="block text-primary-blue font-bold mb-2 text-sm md:text-base">Kilometraje</label>
+<input type="number" name="km" required class="input-glow w-full px-3 sm:px-4 py-3 rounded-lg bg-gray-800/50 border border-gray-600 text-white focus:outline-none text-sm sm:text-base" placeholder="Ej: 150000">
+</div>
+</div>
+<!-- NUEVO CAMPO: TIPO DE FALLA -->
+<div>
+<label class="block text-primary-blue font-bold mb-2 text-sm md:text-base">Tipo de falla principal</label>
+<select name="failureType" required class="input-glow w-full px-3 sm:px-4 py-3 rounded-lg bg-gray-800/50 border border-gray-600 text-white focus:outline-none text-sm sm:text-base">
+<option value="">Selecciona una opción...</option>
+<option value="Motor - Pérdida de potencia">Motor - Pérdida de potencia</option>
+<option value="Motor - Sobrecalentamiento">Motor - Sobrecalentamiento</option>
+<option value="Motor - Ruidos extraños">Motor - Ruidos extraños</option>
+<option value="Motor - Humo excesivo">Motor - Humo excesivo</option>
+<option value="Motor - Dificultad para arrancar">Motor - Dificultad para arrancar</option>
+<option value="Transmisión - Problemas de cambio">Transmisión - Problemas de cambio</option>
+<option value="Transmisión - Ruidos/vibraciones">Transmisión - Ruidos/vibraciones</option>
+<option value="Transmisión - Embrague">Transmisión - Embrague</option>
+<option value="Frenos - Pedal blando/duro">Frenos - Pedal blando/duro</option>
+<option value="Frenos - Ruidos al frenar">Frenos - Ruidos al frenar</option>
+<option value="Frenos - Vibración al frenar">Frenos - Vibración al frenar</option>
+<option value="Frenos - Fuga de líquido">Frenos - Fuga de líquido</option>
+<option value="Sistema eléctrico - Fallas de luces">Sistema eléctrico - Fallas de luces</option>
+<option value="Sistema eléctrico - Batería">Sistema eléctrico - Batería</option>
+<option value="Sistema eléctrico - Alternador">Sistema eléctrico - Alternador</option>
+<option value="Sistema eléctrico - Tablero/indicadores">Sistema eléctrico - Tablero/indicadores</option>
+<option value="Dirección - Dura/pesada">Dirección - Dura/pesada</option>
+<option value="Dirección - Ruidos">Dirección - Ruidos</option>
+<option value="Dirección - Vibraciones">Dirección - Vibraciones</option>
+<option value="Suspensión - Ruidos">Suspensión - Ruidos</option>
+<option value="Suspensión - Inestabilidad">Suspensión - Inestabilidad</option>
+<option value="Suspensión - Fugas">Suspensión - Fugas</option>
+<option value="Escape - Ruidos excesivos">Escape - Ruidos excesivos</option>
+<option value="Escape - Humo anormal">Escape - Humo anormal</option>
+<option value="Escape - Olores extraños">Escape - Olores extraños</option>
+<option value="Refrigeración - Fugas">Refrigeración - Fugas</option>
+<option value="Refrigeración - Sobrecalentamiento">Refrigeración - Sobrecalentamiento</option>
+<option value="Refrigeración - Ventilador">Refrigeración - Ventilador</option>
+<option value="Inyección - Fallas de combustible">Inyección - Fallas de combustible</option>
+<option value="Inyección - Inyectores">Inyección - Inyectores</option>
+<option value="Inyección - Bomba">Inyección - Bomba</option>
+<option value="Turbo - Pérdida de potencia">Turbo - Pérdida de potencia</option>
+<option value="Turbo - Ruidos">Turbo - Ruidos</option>
+<option value="Turbo - Humo">Turbo - Humo</option>
+<option value="Otro - Especificar en descripción">Otro - Especificar en descripción</option>
+</select>
+</div>
+<div>
+<label class="block text-primary-blue font-bold mb-2 text-sm md:text-base">Descripción detallada de la falla</label>
+<textarea name="symptoms" required rows="4" class="input-glow w-full px-3 sm:px-4 py-3 rounded-lg bg-gray-800/50 border border-gray-600 text-white focus:outline-none text-sm sm:text-base" placeholder="Describe los síntomas que presenta el vehículo..."></textarea>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+<div>
+<label class="block text-primary-blue font-bold mb-2 text-sm md:text-base">¿Cuándo ocurre la falla?</label>
+<select name="context" class="input-glow w-full px-3 sm:px-4 py-3 rounded-lg bg-gray-800/50 border border-gray-600 text-white focus:outline-none text-sm sm:text-base">
+<option value="Constante">Constante</option>
+<option value="En frío">En frío</option>
+<option value="En caliente">En caliente</option>
+<option value="Bajo carga">Bajo carga</option>
+<option value="En ruta">En ruta</option>
+<option value="Ciudad">Ciudad</option>
+</select>
+</div>
+<div>
+<label class="block text-primary-blue font-bold mb-2 text-sm md:text-base">Tipo de transporte</label>
+<select name="heavyContext" class="input-glow w-full px-3 sm:px-4 py-3 rounded-lg bg-gray-800/50 border border-gray-600 text-white focus:outline-none text-sm sm:text-base">
+<option value="Carga pesada">Carga pesada</option>
+<option value="Larga distancia">Larga distancia</option>
+<option value="Distribución urbana">Distribución urbana</option>
+<option value="Obras/construcción">Obras/construcción</option>
+<option value="Otros">Otros</option>
+</select>
+</div>
+</div>
+<button type="submit" class="w-full bg-primary-blue hover:bg-blue-500 text-primary-dark font-bold py-3 sm:py-4 rounded-lg transition hover:shadow-neon uppercase text-sm sm:text-base md:text-lg">
+<i class="fa-brands fa-whatsapp mr-2"></i> Enviar Pre-Diagnóstico
+</button>
+</form>
+</div>
+</div>
+</section>
+<!-- FOOTER -->
+<footer class="bg-primary-dark border-t border-gray-800 py-8 sm:py-12">
+<div class="container mx-auto px-4 md:px-6">
+<div class="text-center">
+<div class="font-display font-bold text-2xl sm:text-3xl md:text-4xl text-primary-blue mb-4">EUDECAM</div>
+<p class="text-gray-400 text-xs sm:text-sm md:text-base mb-6">Especialistas en transporte pesado</p>
+<div class="flex justify-center gap-4 sm:gap-6 mb-6">
+<a href="https://www.instagram.com/eudecam/" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-primary-blue text-2xl sm:text-3xl transition">
+<i class="fa-brands fa-instagram"></i>
+</a>
+<a href="https://wa.me/541149371759" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-primary-blue text-2xl sm:text-3xl transition">
+<i class="fa-brands fa-whatsapp"></i>
+</a>
+<!-- NUEVO BOTÓN DE UBICACIÓN -->
+<a href="https://maps.app.goo.gl/VgmDcagPucwZs1Dm8" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-primary-blue text-2xl sm:text-3xl transition">
+<i class="fa-solid fa-location-dot"></i>
+</a>
+</div>
+<p class="text-gray-500 text-xs sm:text-sm">&copy; 2026 Eudecam. Todos los derechos reservados.</p>
+</div>
+</div>
+</footer>
+<!-- SCRIPT -->
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+// Mobile menu functionality
+const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+const closeMenuBtn = document.getElementById('close-menu-btn');
+const mobileMenu = document.getElementById('mobile-menu');
+const mobileMenuLinks = document.querySelectorAll('.mobile-menu-link');
+const body = document.body;
+const menuIcon = mobileMenuBtn.querySelector('i');
+function openMenu() {
+mobileMenu.classList.add('open');
+body.classList.add('menu-open');
+menuIcon.classList.remove('fa-bars');
+menuIcon.classList.add('fa-times');
+}
+function closeMenu() {
+mobileMenu.classList.remove('open');
+body.classList.remove('menu-open');
+menuIcon.classList.remove('fa-times');
+menuIcon.classList.add('fa-bars');
+}
+mobileMenuBtn.addEventListener('click', openMenu);
+closeMenuBtn.addEventListener('click', closeMenu);
+mobileMenuLinks.forEach(link => {
+link.addEventListener('click', closeMenu);
+});
+// Close menu when clicking outside
+mobileMenu.addEventListener('click', (e) => {
+if (e.target === mobileMenu) {
+closeMenu();
+}
+});
+// Contadores animados - CON UN SOLO SIGNO POR DATO
+const counters = [
+{ id: 'counter1', target: 15, suffix: '+' },
+{ id: 'counter2', target: 5000, suffix: '+' },
+{ id: 'counter3', target: 98, suffix: '%' }
+];
+const animateCounter = (el, target, suffix) => {
+let current = 0;
+const increment = target / 50;
+const timer = setInterval(() => {
+current += increment;
+if (current >= target) {
+current = target;
+clearInterval(timer);
+}
+el.textContent = Math.floor(current) + suffix;
+}, 30);
+};
+// Intersection Observer para contadores
+const observerOptions = {
+threshold: 0.5,
+rootMargin: '0px'
+};
+const observer = new IntersectionObserver((entries) => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+const counterId = entry.target.id;
+const counterData = counters.find(c => c.id === counterId);
+if (counterData) {
+animateCounter(entry.target, counterData.target, counterData.suffix);
+observer.unobserve(entry.target);
+}
+}
+});
+}, observerOptions);
+counters.forEach(counter => {
+const el = document.getElementById(counter.id);
+if (el) observer.observe(el);
+});
+// Parallax effect mejorado con movimiento
+const parallaxContainer = document.getElementById('parallax-container');
+const parallaxImg = document.getElementById('parallax-img');
+if (parallaxContainer && parallaxImg) {
+// Only enable scroll parallax on desktop
+if (window.innerWidth > 768) {
+window.addEventListener('scroll', () => {
+const scrolled = window.pageYOffset;
+const rate = scrolled * 0.5;
+parallaxImg.style.transform = `translateY(${rate}px) scale(1.1)`;
+});
+}
+// Only enable mouse movement effect on desktop
+if (window.innerWidth > 768) {
+document.addEventListener('mousemove', (e) => {
+const xAxis = (window.innerWidth / 2 - e.pageX) / 50;
+const yAxis = (window.innerHeight / 2 - e.pageY) / 50;
+parallaxImg.style.transform = `rotateY(${xAxis}deg) rotateX(${yAxis}deg) scale(1.05)`;
+});
+}
+}
+// Form submission
+document.getElementById('triageForm').addEventListener('submit', (e) => {
+e.preventDefault();
+const btn = e.target.querySelector('button');
+const originalText = btn.innerHTML;
+btn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Enviando...';
+btn.disabled = true;
+const formData = new FormData(e.target);
+const name = formData.get('name');
+const phone = formData.get('phone');
+const vehicle = formData.get('vehicle');
+const km = formData.get('km');
+const failureType = formData.get('failureType');
+const symptoms = formData.get('symptoms');
+const context = formData.get('context');
+const heavyContext = formData.get('heavyContext');
+const message = `🏁 *¡Hola Eudecam!* 🚛
+` +
+`🔍 *Solicitud de Pre-Diagnóstico*
+` +
+`👤 *Nombre:* ${name}
+` +
+`📱 *WhatsApp:* ${phone}
+` +
+`🚛 *Vehículo:* ${vehicle}
+` +
+`🛣️ *Kilometraje:* ${km} km
+` +
+`⚠️ *Tipo de falla:* ${failureType}
+` +
+`📝 *Descripción:*
+${symptoms}
+` +
+`🔧 *Ocurre:* ${context}
+` +
+`🚚 *Tipo de transporte:* ${heavyContext}
+` +
+`💰 *Solicito:* Diagnóstico y presupuesto aproximado
+` +
+`⏱️ ¡Espero su respuesta! 🚀`;
+const whatsappUrl = `https://api.whatsapp.com/send?phone=541149371759&text=${encodeURIComponent(message)}`;
+setTimeout(() => {
+window.open(whatsappUrl, '_blank');
+btn.innerHTML = '<i class="fa-solid fa-check"></i> ¡Enviado!';
+btn.classList.add('bg-green-600');
+setTimeout(() => {
+btn.innerHTML = originalText;
+btn.classList.remove('bg-green-600');
+btn.disabled = false;
+e.target.reset();
+}, 3000);
+}, 1000);
+});
+// SISTEMA DE ESTADO INTELIGENTE - ABIERTO/CERRADO
+const checkStatus = () => {
+const now = new Date();
+const hour = now.getHours();
+const minutes = now.getMinutes();
+const day = now.getDay(); // 0 = Domingo, 1 = Lunes, ..., 6 = Sábado
+// Horario de atención: Lunes a Viernes de 8:00 a 18:00
+const openingHour = 8;
+const closingHour = 18;
+const currentTime = hour + (minutes / 60);
+// Verificar si es día hábil (1-5) y dentro del horario
+const isBusinessDay = (day >= 1 && day <= 5);
+const isBusinessHours = (currentTime >= openingHour && currentTime < closingHour);
+const isOpen = isBusinessDay && isBusinessHours;
+// Elementos del DOM - Desktop
+const statusDotDesktop = document.getElementById('status-dot-desktop');
+const statusTextDesktop = document.getElementById('status-text-desktop');
+const statusBarMobile = document.getElementById('status-bar-mobile');
+// Elementos del DOM - Mobile Menu
+const statusDotMobileMenu = document.getElementById('status-dot-mobile-menu');
+const statusTextMobileMenu = document.getElementById('status-text-mobile-menu');
+if (isOpen) {
+// ESTADO: ABIERTO - Verde
+if (statusDotDesktop) {
+statusDotDesktop.className = 'w-3 h-3 rounded-full mr-3 bg-green-500 animate-pulse shadow-lg shadow-green-500/50';
+}
+if (statusTextDesktop) {
+statusTextDesktop.textContent = 'Abierto ahora';
+statusTextDesktop.className = 'text-green-400 font-bold';
+}
+if (statusBarMobile) {
+statusBarMobile.textContent = '✓ Abierto ahora - Lun a Vie 8:00 a 18:00';
+statusBarMobile.className = 'md:hidden w-full py-2 text-center text-xs font-bold uppercase bg-green-900/30 text-green-400 border-t border-green-700/50';
+}
+if (statusDotMobileMenu) {
+statusDotMobileMenu.className = 'w-3 h-3 rounded-full mr-3 bg-green-500 animate-pulse';
+}
+if (statusTextMobileMenu) {
+statusTextMobileMenu.textContent = 'Abierto ahora';
+statusTextMobileMenu.className = 'text-green-400 font-bold';
+}
+} else {
+// ESTADO: CERRADO - Rojo
+if (statusDotDesktop) {
+statusDotDesktop.className = 'w-3 h-3 rounded-full mr-3 bg-red-500';
+}
+if (statusTextDesktop) {
+statusTextDesktop.textContent = 'Cerrado';
+statusTextDesktop.className = 'text-red-400 font-bold';
+}
+if (statusBarMobile) {
+// Calcular cuándo abre
+let nextOpenDay = '';
+let nextOpenTime = '';
+if (day === 0) {
+// Domingo - abre mañana (Lunes)
+nextOpenDay = 'Mañana (Lun)';
+} else if (day === 6) {
+// Sábado - abre pasado mañana (Lunes)
+nextOpenDay = 'Lunes';
+} else {
+// Entre semana - abre mañana
+nextOpenDay = 'Mañana';
+}
+nextOpenTime = '8:00 hs';
+statusBarMobile.textContent = `✗ Cerrado - Abre ${nextOpenDay} ${nextOpenTime}`;
+statusBarMobile.className = 'md:hidden w-full py-2 text-center text-xs font-bold uppercase bg-red-900/30 text-red-400 border-t border-red-700/50';
+}
+if (statusDotMobileMenu) {
+statusDotMobileMenu.className = 'w-3 h-3 rounded-full mr-3 bg-red-500';
+}
+if (statusTextMobileMenu) {
+statusTextMobileMenu.textContent = 'Cerrado';
+statusTextMobileMenu.className = 'text-red-400 font-bold';
+}
+}
+};
+// Ejecutar al cargar y actualizar cada minuto
+checkStatus();
+setInterval(checkStatus, 60000);
+});
+</script>
 </body>
 </html>
+
 
 
 
