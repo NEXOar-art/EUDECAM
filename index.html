@@ -227,6 +227,18 @@ input, select, textarea {
 font-size: 16px; /* Prevents zoom on iOS */
 }
 }
+/* Testimonial card effects */
+.testimonial-card {
+transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.testimonial-card:hover {
+transform: translateY(-8px) scale(1.02);
+box-shadow: 0 20px 40px rgba(0, 212, 255, 0.3);
+}
+.star-rating {
+color: #FFD700;
+text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
 </style>
 </head>
 <body class="antialiased relative">
@@ -354,6 +366,97 @@ Pre-Diagnóstico <i class="fa-solid fa-arrow-right group-hover:translate-x-2 tra
 </div>
 </div>
 </section>
+
+<!-- SECCIÓN DE TESTIMONIOS -->
+<section class="py-12 sm:py-16 md:py-24 bg-gradient-to-b from-primary-dark to-gray-900">
+<div class="container mx-auto px-4 md:px-6">
+<div class="text-center mb-8 sm:mb-12 md:mb-16">
+<h2 class="font-display font-bold text-3xl sm:text-4xl md:text-5xl text-primary-blue mb-4 glow-text">LO QUE DICEN NUESTROS CLIENTES</h2>
+<div class="racing-line max-w-md mx-auto mb-4 sm:mb-6"></div>
+<p class="text-gray-300 text-sm sm:text-base md:text-lg px-2">Experiencias reales de transportistas que confían en nosotros</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 md:gap-8">
+<!-- Testimonio 1 -->
+<div class="testimonial-card glass p-5 sm:p-6 md:p-8 rounded-xl relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary-blue/10 rounded-full -mr-16 -mt-16 blur-2xl group-hover:bg-primary-blue/20 transition-all duration-500"></div>
+<div class="flex items-center mb-4">
+<div class="flex star-rating text-lg">
+<i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+</div>
+</div>
+<p class="text-gray-300 text-xs sm:text-sm md:text-base mb-4 italic">"Excelente servicio, diagnosticaron el problema de mi Scania en minutos. El equipo es muy profesional y los precios son justos. Totalmente recomendados."</p>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-br from-primary-blue to-blue-600 flex items-center justify-center text-white font-bold text-sm sm:text-base">
+CR
+</div>
+<div>
+<div class="font-bold text-primary-blue text-sm sm:text-base">Carlos Rodríguez</div>
+<div class="text-gray-500 text-xs">Transportista - 5 años con nosotros</div>
+</div>
+</div>
+</div>
+<!-- Testimonio 2 -->
+<div class="testimonial-card glass p-5 sm:p-6 md:p-8 rounded-xl relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary-blue/10 rounded-full -mr-16 -mt-16 blur-2xl group-hover:bg-primary-blue/20 transition-all duration-500"></div>
+<div class="flex items-center mb-4">
+<div class="flex star-rating text-lg">
+<i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+</div>
+</div>
+<p class="text-gray-300 text-xs sm:text-sm md:text-base mb-4 italic">"Llevo mi flota de 8 camiones hace 3 años. La atención es rápida y siempre encuentran la solución. El pre-diagnóstico online me ahorra mucho tiempo."</p>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-br from-primary-blue to-blue-600 flex items-center justify-center text-white font-bold text-sm sm:text-base">
+MG
+</div>
+<div>
+<div class="font-bold text-primary-blue text-sm sm:text-base">Miguel González</div>
+<div class="text-gray-500 text-xs">Flota de transporte - Cliente desde 2023</div>
+</div>
+</div>
+</div>
+<!-- Testimonio 3 -->
+<div class="testimonial-card glass p-5 sm:p-6 md:p-8 rounded-xl relative overflow-hidden group">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary-blue/10 rounded-full -mr-16 -mt-16 blur-2xl group-hover:bg-primary-blue/20 transition-all duration-500"></div>
+<div class="flex items-center mb-4">
+<div class="flex star-rating text-lg">
+<i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star"></i>
+<i class="fa-solid fa-star-half-stroke"></i>
+</div>
+</div>
+<p class="text-gray-300 text-xs sm:text-sm md:text-base mb-4 italic">"Tuve un problema urgente en ruta y me atendieron de inmediato. Muy buena onda y conocimiento. Mi Volvo quedó como nuevo. ¡Gracias Eudecam!"</p>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-br from-primary-blue to-blue-600 flex items-center justify-center text-white font-bold text-sm sm:text-base">
+LF
+</div>
+<div>
+<div class="font-bold text-primary-blue text-sm sm:text-base">Lucas Fernández</div>
+<div class="text-gray-500 text-xs">Transporte de carga - Cliente frecuente</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Botón de Google Reviews -->
+<div class="text-center mt-8 sm:mt-12">
+<a href="https://maps.app.goo.gl/CfX7aQwWnGUP81WY8" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 bg-gradient-to-r from-primary-blue to-blue-600 hover:from-blue-400 hover:to-blue-500 text-primary-dark font-bold px-6 sm:px-8 py-3 sm:py-4 rounded-lg transition-all duration-300 hover:shadow-neon hover:scale-105 group">
+<i class="fa-brands fa-google text-xl sm:text-2xl"></i>
+<span class="text-sm sm:text-base">Dejá tu reseña en Google</span>
+<i class="fa-solid fa-arrow-right group-hover:translate-x-2 transition-transform"></i>
+</a>
+</div>
+</div>
+</section>
+
 <!-- SECCIÓN DE DIAGNÓSTICO -->
 <section id="diagnostico" class="py-12 sm:py-16 md:py-24 bg-gradient-to-b from-primary-dark to-gray-900">
 <div class="container mx-auto px-4 md:px-6">
@@ -473,9 +576,11 @@ Pre-Diagnóstico <i class="fa-solid fa-arrow-right group-hover:translate-x-2 tra
 <a href="https://wa.me/541149371759" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-primary-blue text-2xl sm:text-3xl transition">
 <i class="fa-brands fa-whatsapp"></i>
 </a>
-<!-- NUEVO BOTÓN DE UBICACIÓN -->
 <a href="https://maps.app.goo.gl/VgmDcagPucwZs1Dm8" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-primary-blue text-2xl sm:text-3xl transition">
 <i class="fa-solid fa-location-dot"></i>
+</a>
+<a href="https://maps.app.goo.gl/CfX7aQwWnGUP81WY8" target="_blank" rel="noopener noreferrer" class="text-gray-400 hover:text-primary-blue text-2xl sm:text-3xl transition">
+<i class="fa-brands fa-google"></i>
 </a>
 </div>
 <p class="text-gray-500 text-xs sm:text-sm">&copy; 2026 Eudecam. Todos los derechos reservados.</p>
