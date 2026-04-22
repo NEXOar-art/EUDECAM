@@ -329,38 +329,22 @@ border-radius: 16px;
 }
 
 /* ============================================ */
-/* LAYOUT INTELIGENTE - ELEMENTOS SUPERIORES    */
+/* BOTÓN AUXILIO MECÁNICO - CENTRADO EN PANTALLA */
 /* ============================================ */
-
-/* DESKTOP: Layout horizontal - elementos separados lateralmente */
-/* MÓVIL: Layout vertical - elementos apilados jerárquicamente   */
-
-/* INDICADOR DE HORARIO - MÓVIL */
-#status-bar-mobile {
-top: 5rem; /* Debajo del navbar (80px = 5rem) */
-}
-
-/* BOTÓN AUXILIO MECÁNICO - POSICIÓN RESPONSIVA */
 .axile-float-btn {
-top: 8.5rem; /* Debajo del status-bar en móvil */
-right: 1rem;
-left: 1rem;
+position: fixed;
+top: 50%;
+left: 50%;
+transform: translate(-50%, -50%);
 z-index: 55;
 display: flex;
 justify-content: center;
 pointer-events: none;
 }
-@media (min-width: 768px) {
-.axile-float-btn {
-top: 7rem; /* Desktop: posición original */
-right: 2rem;
-left: auto;
-}
-}
 
-/* TARJETA SERVICIO DE GRÚA - POSICIÓN RESPONSIVA */
+/* TARJETA SERVICIO DE GRÚA */
 .tow-card {
-top: 12.5rem; /* Debajo del botón auxilio en móvil */
+top: 12.5rem;
 left: 50%;
 transform: translateX(-50%);
 z-index: 52;
@@ -376,18 +360,7 @@ box-shadow: 0 0 15px rgba(220, 38, 38, 0.5);
 }
 @media (min-width: 768px) {
 .tow-card {
-top: 5.5rem; /* Desktop: posición original arriba */
-}
-}
-
-/* BADGE ESPECIALISTAS - POSICIÓN RESPONSIVA */
-.hero-badge {
-display: inline-block;
-}
-@media (max-width: 768px) {
-.hero-badge {
-display: block;
-margin: 0 auto;
+top: 5.5rem;
 }
 }
 
@@ -724,7 +697,7 @@ Opiniones
 <span>Servicio de Grúa</span>
 </div>
 
-<!-- BOTÓN FLOTANTE DE AUXILIO MECÁNICO (Posición responsive) -->
+<!-- BOTÓN FLOTANTE DE AUXILIO MECÁNICO - CENTRADO EN PANTALLA -->
 <div class="axile-float-btn">
 <button id="axile-assist-btn" class="axile-btn" title="AUXILIO MECÁNICO 24/7" aria-label="Solicitar auxilio mecánico">
 <i class="fa-solid fa-truck-medical"></i>
@@ -1358,7 +1331,6 @@ setInterval(checkStatus, 60000);
 </script>
 </body>
 </html>
-
 
 
 
