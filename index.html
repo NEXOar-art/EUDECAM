@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
-<meta name="description" content="MECANICA ESPECIALIZADA DIESEL/NAFTERO RAMIREZ - Service Oficial en Zapala, Neuquén. Especialistas en diagnóstico electrónico, common rail, chip tuning y mantenimiento diesel/naftero. Turnos rápidos vía WhatsApp.">
-<title>MECANICA ESPECIALIZADA DIESEL/NAFTERO RAMIREZ - SERVICE OFICIAL</title>
+<meta name="description" content="MECANICA RAMIREZ ESPECIALIZADA DIESEL/NAFTA - Service Oficial en Zapala, Neuquén. Auxilio Mecánico 24/7, Common rail, chip tuning y mantenimiento diesel/naftero. Turnos rápidos vía WhatsApp.">
+<title>MECANICA RAMIREZ ESPECIALIZADA DIESEL/NAFTA - AUXILIO 24/7</title>
 <!-- Tailwind CSS CDN -->
 <script src="https://cdn.tailwindcss.com"></script>
 <!-- Font Awesome -->
@@ -22,6 +22,7 @@ display: ['Orbitron', 'sans-serif'],
 colors: {
 primary: {
 yellow: '#FFD700',
+red: '#DC2626',
 dark: '#0A0F1A',
 gray: '#1E293B',
 light: '#F8FAFC',
@@ -30,6 +31,7 @@ light: '#F8FAFC',
 boxShadow: {
 'neon': '0 0 20px rgba(255, 215, 0, 0.5)',
 'glow': '0 0 30px rgba(255, 215, 0, 0.3)',
+'red-glow': '0 0 30px rgba(220, 38, 38, 0.5)',
 }
 }
 }
@@ -89,14 +91,12 @@ animation: kenburns 30s ease-in-out infinite alternate;
 }
 }
 
-/* Efecto Ken Burns - Zoom suave */
 @keyframes kenburns {
 0% { transform: scale(1) translate(0, 0); }
 50% { transform: scale(1.15) translate(-2%, -2%); }
 100% { transform: scale(1.05) translate(2%, 2%); }
 }
 
-/* Movimiento flotante sutil */
 @keyframes subtleFloat {
 0%, 100% { transform: translate(0, 0) scale(1); }
 25% { transform: translate(1%, -1%) scale(1.02); }
@@ -104,7 +104,6 @@ animation: kenburns 30s ease-in-out infinite alternate;
 75% { transform: translate(1%, 1%) scale(1.03); }
 }
 
-/* Efecto de respiración */
 @keyframes breathe {
 0%, 100% { transform: scale(1) rotate(0deg); }
 50% { transform: scale(1.08) rotate(0.5deg); }
@@ -114,20 +113,17 @@ animation: kenburns 30s ease-in-out infinite alternate;
 animation: kenburns 25s ease-in-out infinite alternate, breathe 12s ease-in-out infinite;
 }
 
-/* Movimiento horizontal continuo */
 @keyframes panHorizontal {
 0% { transform: translateX(0) scale(1.1); }
 50% { transform: translateX(-3%) scale(1.15); }
 100% { transform: translateX(0) scale(1.1); }
 }
 
-/* Movimiento vertical suave */
 @keyframes panVertical {
 0%, 100% { transform: translateY(0) scale(1.05); }
 50% { transform: translateY(-4%) scale(1.1); }
 }
 
-/* Resto de estilos */
 .input-glow { border-color: #334155; transition: all 0.3s; }
 .input-glow:focus { border-color: #FFD700; box-shadow: 0 0 20px rgba(255, 215, 0, 0.5); }
 .neon-pulse { animation: neonPulse 4s ease-in-out infinite alternate; }
@@ -199,7 +195,6 @@ transform: translateY(20px);
 opacity: 0;
 animation: fadeInUp 1s ease-out 1.4s forwards;
 }
-/* Mobile menu animation */
 .mobile-menu {
 transform: translateX(-100%);
 transition: transform 0.3s ease-in-out;
@@ -207,67 +202,41 @@ transition: transform 0.3s ease-in-out;
 .mobile-menu.open {
 transform: translateX(0);
 }
-/* Prevent body scroll when menu is open */
 body.menu-open {
 overflow: hidden;
 }
-/* Touch-friendly inputs */
 @media (max-width: 768px) {
 input, select, textarea {
 font-size: 16px;
 }
 }
-/* Logo styles */
-.ramirez-logo {
-height: 50px;
-width: auto;
-filter: drop-shadow(0 0 8px rgba(255, 215, 0, 0.4));
-transition: all 0.3s ease;
-}
-.ramirez-logo:hover {
-filter: drop-shadow(0 0 15px rgba(255, 215, 0, 0.8));
-transform: scale(1.05);
-}
-@media (max-width: 768px) {
-.ramirez-logo {
-height: 40px;
-}
-}
-.ramirez-logo-large {
-height: 80px;
-width: auto;
-filter: drop-shadow(0 0 12px rgba(255, 215, 0, 0.6));
-}
-@media (max-width: 768px) {
-.ramirez-logo-large {
-height: 60px;
-}
-}
 
-/* BOTÓN FLOTANTE DE AXILIO MECÁNICO CON EFECTOS */
-.axle-float-btn {
+/* BOTÓN FLOTANTE DE AUXILIO MECÁNICO - POSICIÓN SUPERIOR */
+.axile-float-btn {
 position: fixed;
-bottom: 6rem;
+top: 5rem;
 right: 1rem;
 left: 1rem;
-z-index: 45;
+z-index: 55;
 display: flex;
 justify-content: center;
+pointer-events: none;
 }
 @media (min-width: 768px) {
-.axle-float-btn {
-bottom: 7rem;
+.axile-float-btn {
+top: 6rem;
 right: 2rem;
 left: auto;
 }
 }
-.axle-btn {
+.axile-btn {
+pointer-events: auto;
 position: relative;
 background: linear-gradient(135deg, #1E293B, #0A0F1A);
 border: 2px solid #FFD700;
 border-radius: 50%;
-width: 65px;
-height: 65px;
+width: 70px;
+height: 70px;
 display: flex;
 align-items: center;
 justify-content: center;
@@ -276,33 +245,44 @@ transition: all 0.3s ease;
 box-shadow: 0 0 20px rgba(255, 215, 0, 0.4);
 animation: axleRotate 4s linear infinite, axlePulse 2s ease-in-out infinite;
 }
-.axle-btn:hover {
-transform: scale(1.1) rotate(10deg);
-box-shadow: 0 0 40px rgba(255, 215, 0, 0.8);
+.axile-btn:hover {
+border-color: #DC2626;
+background: linear-gradient(135deg, #7F1D1D, #991B1B);
+box-shadow: 0 0 40px rgba(220, 38, 38, 0.9);
+transform: scale(1.15) rotate(10deg);
 }
-.axle-btn i {
+.axile-btn:hover i {
+color: #FCA5A5;
+}
+.axile-btn i {
 color: #FFD700;
-font-size: 1.5rem;
+font-size: 1.6rem;
 z-index: 2;
 animation: gearSpin 3s linear infinite reverse;
+transition: color 0.3s ease;
 }
-.axle-btn::before,
-.axle-btn::after {
+.axile-btn::before,
+.axile-btn::after {
 content: '';
 position: absolute;
 border-radius: 50%;
 border: 2px dashed #FFD700;
 animation: axleRotate 8s linear infinite reverse;
+transition: border-color 0.3s ease;
 }
-.axle-btn::before {
-width: 80px;
-height: 80px;
+.axile-btn:hover::before,
+.axile-btn:hover::after {
+border-color: #DC2626;
+}
+.axile-btn::before {
+width: 85px;
+height: 85px;
 border-width: 1px;
 opacity: 0.6;
 }
-.axle-btn::after {
-width: 95px;
-height: 95px;
+.axile-btn::after {
+width: 100px;
+height: 100px;
 border-width: 1px;
 opacity: 0.3;
 }
@@ -319,7 +299,34 @@ opacity: 0.3;
 100% { transform: rotate(-360deg); }
 }
 
-/* MODAL DEL FORMULARIO DE ASISTENCIA */
+/* ETIQUETA 24/7 */
+.badge-247 {
+display: inline-flex;
+align-items: center;
+gap: 0.3rem;
+background: rgba(220, 38, 38, 0.2);
+border: 1px solid #DC2626;
+color: #FCA5A5;
+padding: 0.25rem 0.75rem;
+border-radius: 9999px;
+font-size: 0.7rem;
+font-weight: 700;
+text-transform: uppercase;
+letter-spacing: 0.05em;
+animation: pulse-red 2s infinite;
+}
+@keyframes pulse-red {
+0%, 100% { box-shadow: 0 0 0 0 rgba(220, 38, 38, 0.4); }
+50% { box-shadow: 0 0 0 8px rgba(220, 38, 38, 0); }
+}
+.badge-247 i {
+animation: blink 1s step-end infinite;
+}
+@keyframes blink {
+50% { opacity: 0; }
+}
+
+/* MODAL DEL FORMULARIO DE AUXILIO */
 .modal-overlay {
 position: fixed;
 inset: 0;
@@ -379,6 +386,74 @@ transform: translateY(-5px);
 box-shadow: 0 10px 30px rgba(255, 215, 0, 0.15);
 }
 .stars { color: #FFD700; }
+
+/* BOTÓN FLOTANTE DE WHATSAPP - INFERIOR */
+.whatsapp-float {
+position: fixed;
+bottom: 1rem;
+right: 1rem;
+z-index: 50;
+}
+@media (min-width: 768px) {
+.whatsapp-float {
+bottom: 2rem;
+right: 2rem;
+}
+}
+.whatsapp-btn {
+display: flex;
+align-items: center;
+justify-content: center;
+width: 60px;
+height: 60px;
+background: #25D366;
+border-radius: 50%;
+color: white;
+font-size: 1.8rem;
+box-shadow: 0 4px 20px rgba(37, 211, 102, 0.5);
+transition: all 0.3s ease;
+animation: whatsappPulse 2s ease-in-out infinite;
+}
+.whatsapp-btn:hover {
+transform: scale(1.15);
+box-shadow: 0 6px 30px rgba(37, 211, 102, 0.8);
+background: #128C7E;
+}
+@keyframes whatsappPulse {
+0%, 100% { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.5); }
+50% { box-shadow: 0 4px 35px rgba(37, 211, 102, 0.9); }
+}
+
+/* FIRMA DEL DISEÑADOR */
+.designer-signature {
+position: fixed;
+bottom: 0.5rem;
+left: 50%;
+transform: translateX(-50%);
+z-index: 45;
+}
+.designer-link {
+display: flex;
+align-items: center;
+gap: 0.4rem;
+color: #64748B;
+font-size: 0.65rem;
+text-decoration: none;
+transition: all 0.3s ease;
+padding: 0.25rem 0.75rem;
+border-radius: 9999px;
+background: rgba(30, 41, 59, 0.5);
+border: 1px solid rgba(100, 116, 139, 0.3);
+}
+.designer-link:hover {
+color: #FFD700;
+border-color: rgba(255, 215, 0, 0.5);
+background: rgba(30, 41, 59, 0.8);
+transform: translateY(-2px);
+}
+.designer-link i {
+font-size: 0.7rem;
+}
 </style>
 </head>
 <body class="antialiased relative">
@@ -392,7 +467,7 @@ box-shadow: 0 10px 30px rgba(255, 215, 0, 0.15);
 </button>
 <div class="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 md:static md:translate-x-0 md:translate-y-0 flex items-center gap-2 md:gap-3">
 <a href="#" class="font-display font-bold text-xs sm:text-sm md:text-base lg:text-lg text-primary-yellow tracking-wide uppercase text-center px-2 hidden sm:block">
-MECANICA ESPECIALIZADA DIESEL/NAFTERO RAMIREZ
+MECANICA RAMIREZ ESPECIALIZADA DIESEL/NAFTA
 </a>
 <a href="#" class="font-display font-bold text-xs text-primary-yellow tracking-wide uppercase text-center px-2 sm:hidden">
 RAMIREZ DIESEL/NAFTA
@@ -437,26 +512,19 @@ Opiniones
 </div>
 </nav>
 
-<!-- Botón flotante de turno -->
-<div class="fixed bottom-24 md:bottom-10 right-4 left-4 md:left-auto z-50 float-btn px-4">
-<a href="#diagnostico" class="bg-primary-yellow hover:bg-yellow-400 text-primary-dark px-6 py-4 rounded-full font-bold shadow-neon transition transform hover:scale-105 flex items-center justify-center gap-3 text-base hover-glow w-full md:w-auto btn-full-mobile">
-<i class="fa-solid fa-calendar-check"></i> <span class="hidden sm:inline">Pedir Turno</span><span class="sm:hidden">Turno</span>
-</a>
-</div>
-
-<!-- BOTÓN FLOTANTE DE AXILIO MECÁNICO -->
-<div class="axle-float-btn">
-<button id="axle-assist-btn" class="axle-btn" title="Asistencia Mecánica Rápida" aria-label="Solicitar asistencia mecánica">
-<i class="fa-solid fa-gear"></i>
+<!-- BOTÓN FLOTANTE DE AUXILIO MECÁNICO - POSICIÓN SUPERIOR -->
+<div class="axile-float-btn">
+<button id="axile-assist-btn" class="axile-btn" title="AUXILIO MECÁNICO 24/7" aria-label="Solicitar auxilio mecánico">
+<i class="fa-solid fa-truck-medical"></i>
 </button>
 </div>
 
-<!-- MODAL DE ASISTENCIA RÁPIDA -->
+<!-- MODAL DE AUXILIO RÁPIDO -->
 <div id="assist-modal" class="modal-overlay">
 <div class="modal-content relative">
 <button id="modal-close" class="modal-close"><i class="fa-solid fa-times"></i></button>
 <h3 class="font-display font-bold text-xl text-primary-yellow mb-4 text-center glow-text">
-<i class="fa-solid fa-wrench mr-2"></i>Asistencia Rápida
+<i class="fa-solid fa-truck-medical mr-2"></i>AUXILIO MECÁNICO 24/7
 </h3>
 <form id="assistForm" class="space-y-4">
 <div>
@@ -501,18 +569,39 @@ Opiniones
 </div>
 </div>
 
+<!-- BOTÓN FLOTANTE DE WHATSAPP - INFERIOR -->
+<div class="whatsapp-float">
+<a href="https://wa.me/5492942563478" target="_blank" rel="noopener noreferrer" class="whatsapp-btn" title="Contactar por WhatsApp">
+<i class="fa-brands fa-whatsapp"></i>
+</a>
+</div>
+
+<!-- FIRMA DEL DISEÑADOR -->
+<div class="designer-signature">
+<a href="https://nexoar-art.github.io/NEXO-art/" target="_blank" rel="noopener noreferrer" class="designer-link" title="Diseñado por NEXO-ART">
+<i class="fa-solid fa-palette"></i> NEXO-ART
+</a>
+</div>
+
+<!-- Botón flotante de turno -->
+<div class="fixed bottom-24 md:bottom-10 right-4 left-4 md:left-auto z-50 float-btn px-4">
+<a href="#diagnostico" class="bg-primary-yellow hover:bg-yellow-400 text-primary-dark px-6 py-4 rounded-full font-bold shadow-neon transition transform hover:scale-105 flex items-center justify-center gap-3 text-base hover-glow w-full md:w-auto btn-full-mobile">
+<i class="fa-solid fa-calendar-check"></i> <span class="hidden sm:inline">Pedir Turno</span><span class="sm:hidden">Turno</span>
+</a>
+</div>
+
 <!-- HERO - imagen de fondo con secuencia truck/car -->
 <header class="relative pt-24 pb-24 md:pt-32 md:pb-32 lg:pt-40 lg:pb-32 min-h-screen flex items-center overflow-hidden bg-gradient-to-b from-primary-dark to-gray-900 animated-gradient section-padding-mobile">
 <div id="parallax-container" class="parallax-container absolute inset-0">
 <!-- IMAGEN TRUCK -->
 <img id="parallax-truck"
 src="https://image.qwenlm.ai/public_source/dfca2d32-944a-46ef-a498-b61fb2f6aae7/26e7c8ec9-f9a9-4126-97a8-f1c977ad220b2953.png"
-alt="Camión - Mecánica Especializada Ramirez"
+alt="Camión - Mecánica Ramirez"
 class="parallax-image active">
 <!-- IMAGEN CAR (se muestra después de 4 segundos) -->
 <img id="parallax-car"
 src="https://image.qwenlm.ai/public_source/dfca2d32-944a-46ef-a498-b61fb2f6aae7/26e7c8ec9-f9a9-4126-97a8-f1c977ad220b2953.png"
-alt="Auto - Mecánica Especializada Ramirez"
+alt="Auto - Mecánica Ramirez"
 class="parallax-image next">
 <div class="absolute inset-0 bg-gradient-to-t from-primary-dark via-primary-dark/70 to-transparent"></div>
 <div class="absolute inset-0 bg-gradient-to-r from-primary-dark/80 via-transparent to-primary-dark/80"></div>
@@ -524,8 +613,9 @@ class="parallax-image next">
 <i class="fa-solid fa-truck-pickup mr-2"></i> <span class="hidden sm:inline">ESPECIALISTAS DIESEL/NAFTA</span><span class="sm:hidden">DIESEL/NAFTA</span>
 </div>
 </div>
-<h1 class="font-display font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-tight glow-text neon-pulse fade-in-up hero-title" style="animation-delay: 0.6s;">
-MECANICA ESPECIALIZADA DIESEL/NAFTERO RAMIREZ
+<h1 class="font-display font-black text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl leading-tight glow-text neon-pulse fade-in-up hero-title flex flex-wrap items-center justify-center md:justify-start gap-2 sm:gap-3" style="animation-delay: 0.6s;">
+<span>MECANICA RAMIREZ ESPECIALIZADA DIESEL/NAFTA</span>
+<span class="badge-247"><i class="fa-solid fa-circle"></i> AUXILIO MECÁNICO 24/7</span>
 </h1>
 <!-- DIRECCIÓN AGREGADA -->
 <p class="text-primary-yellow glow-text fade-in-up text-sm sm:text-base md:text-lg font-bold mt-1 sm:mt-2 flex items-center justify-center md:justify-start gap-2" style="animation-delay: 0.9s;">
@@ -714,7 +804,7 @@ Pre-Diagnóstico <i class="fa-solid fa-arrow-right group-hover:translate-x-2 tra
 <footer class="bg-primary-dark border-t border-gray-800 py-8 sm:py-12">
 <div class="container mx-auto px-4 md:px-6">
 <div class="text-center">
-<div class="font-display font-bold text-xl sm:text-2xl md:text-3xl lg:text-4xl text-primary-yellow mb-3 sm:mb-4">MECANICA ESPECIALIZADA DIESEL/NAFTERO RAMIREZ</div>
+<div class="font-display font-bold text-xl sm:text-2xl md:text-3xl lg:text-4xl text-primary-yellow mb-3 sm:mb-4">MECANICA RAMIREZ ESPECIALIZADA DIESEL/NAFTA</div>
 <p class="text-gray-400 text-xs sm:text-sm md:text-base mb-4 sm:mb-6">Especialistas en diagnóstico y reparación electrónica automotriz diesel/nafta</p>
 
 <!-- DATOS DE CONTACTO EN TEXTO -->
@@ -748,7 +838,7 @@ Lun-Vie: 08:30-20:30hs | Sáb: 09:00-13:00hs | Dom: Cerrado
 <i class="fa-solid fa-star"></i>
 </a>
 </div>
-<p class="text-gray-500 text-xs sm:text-sm">&copy; 2026 MECANICA ESPECIALIZADA DIESEL/NAFTERO RAMIREZ. Todos los derechos reservados.</p>
+<p class="text-gray-500 text-xs sm:text-sm">&copy; 2026 MECANICA RAMIREZ ESPECIALIZADA DIESEL/NAFTA. Todos los derechos reservados.</p>
 </div>
 </div>
 </footer>
@@ -834,19 +924,15 @@ const parallaxTruck = document.getElementById('parallax-truck');
 const parallaxCar = document.getElementById('parallax-car');
 
 if (parallaxTruck && parallaxCar) {
-// Iniciar con truck visible
 parallaxTruck.classList.add('active');
 parallaxCar.classList.remove('active');
 
-// Función para alternar imágenes cada 4 segundos
 const cycleImages = () => {
-// Ocultar truck, mostrar car
 parallaxTruck.classList.remove('active');
 parallaxTruck.classList.add('next');
 parallaxCar.classList.remove('next');
 parallaxCar.classList.add('active');
 
-// Después de 4 segundos, volver al truck
 setTimeout(() => {
 parallaxCar.classList.remove('active');
 parallaxCar.classList.add('next');
@@ -855,14 +941,11 @@ parallaxTruck.classList.add('active');
 }, 4000);
 };
 
-// Iniciar ciclo después de 4 segundos iniciales
 setTimeout(() => {
 cycleImages();
-// Repetir ciclo cada 8 segundos (4s truck + 4s car)
 setInterval(cycleImages, 8000);
 }, 4000);
 
-// Parallax scroll effect solo en desktop
 if (window.innerWidth > 768) {
 window.addEventListener('scroll', () => {
 const scrolled = window.pageYOffset;
@@ -875,13 +958,13 @@ activeImg.style.transform = `translateY(${rate}px) scale(1.1)`;
 }
 }
 
-// BOTÓN DE AXILIO MECÁNICO - MODAL
-const axleBtn = document.getElementById('axle-assist-btn');
+// BOTÓN DE AUXILIO MECÁNICO - MODAL
+const axileBtn = document.getElementById('axile-assist-btn');
 const modal = document.getElementById('assist-modal');
 const modalClose = document.getElementById('modal-close');
 const assistForm = document.getElementById('assistForm');
 
-axleBtn.addEventListener('click', (e) => {
+axileBtn.addEventListener('click', (e) => {
 e.preventDefault();
 modal.classList.add('active');
 body.classList.add('menu-open');
@@ -899,7 +982,7 @@ body.classList.remove('menu-open');
 }
 });
 
-// Formulario de asistencia rápida
+// Formulario de auxilio rápido
 assistForm.addEventListener('submit', (e) => {
 e.preventDefault();
 const btn = e.target.querySelector('button');
@@ -913,7 +996,7 @@ const vehicleType = formData.get('vehicleType');
 const failureType = formData.get('failureType');
 const description = formData.get('description');
 
-const message = `🔧 *¡Hola RAMIREZ! Necesito asistencia* 🚗
+const message = `🔧 *¡URGENTE! Necesito AUXILIO MECÁNICO* 🚨
 ` +
 `📍 *Ubicación:* ${location}
 ` +
@@ -923,7 +1006,7 @@ const message = `🔧 *¡Hola RAMIREZ! Necesito asistencia* 🚗
 ` +
 `📝 *Descripción:* ${description || 'Sin detalles adicionales'}
 ` +
-`🆘 *Solicito:* Diagnóstico y orientación para resolver el problema
+`🆘 *Solicito:* Auxilio mecánico inmediato
 ` +
 `⏱️ ¡Quedo a la espera! 🙏`;
 
@@ -1009,16 +1092,14 @@ const hour = now.getHours();
 const minutes = now.getMinutes();
 const day = now.getDay();
 
-// Horarios: Lun-Vie 08:30-20:30, Sab 09:00-13:00, Dom cerrado
 const currentTime = hour + (minutes / 60);
 let isOpen = false;
 
-if (day >= 1 && day <= 5) { // Lunes a Viernes
+if (day >= 1 && day <= 5) {
 isOpen = (currentTime >= 8.5 && currentTime < 20.5);
-} else if (day === 6) { // Sábado
+} else if (day === 6) {
 isOpen = (currentTime >= 9 && currentTime < 13);
 }
-// Domingo: siempre cerrado
 
 const statusDotDesktop = document.getElementById('status-dot-desktop');
 const statusTextDesktop = document.getElementById('status-text-desktop');
